@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import {
   Wifi, Shield, UtensilsCrossed, Car, Sparkles, Droplets,
   Star, ChevronLeft, ChevronRight, Phone, MessageCircle, ArrowRight, Check, Play
@@ -82,9 +82,43 @@ function FadeUp({ children, delay = 0, className = "" }) {
   );
 }
 
+/* ── room card component ── */
+function RoomCard({ room }) {
+  return (
+    <div className="bg-white rounded-3xl overflow-hidden border border-[#7B1113]/8 hover:shadow-2xl hover:shadow-[#7B1113]/8 transition-all duration-500 group">
+      <div className="relative h-72 overflow-hidden">
+        <img src={room.image} alt={room.type} className="w-full h-full object-cover group-hover:scale-107 transition-transform duration-700" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1A0A0B]/50 to-transparent" />
+        <div className="absolute top-4 left-4 text-white text-xs font-semibold px-3.5 py-1.5 rounded-full" style={{ backgroundColor: room.badgeColor, fontFamily: "Inter, sans-serif" }}>
+          {room.badge}
+        </div>
+        {/* Price overlay */}
+        <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2">
+          <span className="text-[#7B1113]" style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: "22px" }}>{room.price}</span>
+          <span className="text-[#7A6A5A] text-xs" style={{ fontFamily: "Inter, sans-serif" }}>/mo</span>
+        </div>
+      </div>
+      <div className="p-7">
+        <h3 className="text-[#1A0A0B] mb-4" style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: "22px" }}>{room.type}</h3>
+        <div className="flex flex-wrap gap-2 mb-6">
+          {room.features.map((f) => (
+            <span key={f} className="flex items-center gap-1.5 bg-[#FAF7F4] text-[#7A6A5A] text-xs px-3.5 py-1.5 rounded-full border border-[#DCCFC0]" style={{ fontFamily: "Inter, sans-serif" }}>
+              <Check size={10} className="text-[#7B1113]" /> {f}
+            </span>
+          ))}
+        </div>
+        <Link to="/rooms" className="block w-full text-center bg-[#1A0A0B] hover:bg-[#7B1113] text-white py-3.5 rounded-2xl font-medium text-sm transition-colors duration-300" style={{ fontFamily: "Inter, sans-serif" }}>
+          View Details & Book Visit
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 export function HomePage() {
   const [slide, setSlide] = useState(0);
   const [showVideo, setShowVideo] = useState(false);
+  const [activeRoomIndex, setActiveRoomIndex] = useState(0);
 
   const next = () => setSlide((c) => (c + 1) % testimonials.length);
   const prev = () => setSlide((c) => (c - 1 + testimonials.length) % testimonials.length);
@@ -318,38 +352,88 @@ export function HomePage() {
             </div>
           </FadeUp>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Swapping Buttons for Mobile View */}
+          <div className="flex lg:hidden bg-white/60 backdrop-blur-md p-1.5 rounded-full border border-[#7B1113]/10 max-w-[280px] mx-auto mb-8 shadow-sm">
+            <button
+              onClick={() => setActiveRoomIndex(0)}
+              className={`flex-1 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
+                activeRoomIndex === 0
+                  ? 'bg-[#7B1113] text-white shadow-md shadow-[#7B1113]/20'
+                  : 'text-[#7A6A5A] hover:bg-white/40'
+              }`}
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
+              Double
+            </button>
+            <button
+              onClick={() => setActiveRoomIndex(1)}
+              className={`flex-1 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
+                activeRoomIndex === 1
+                  ? 'bg-[#7B1113] text-white shadow-md shadow-[#7B1113]/20'
+                  : 'text-[#7A6A5A] hover:bg-white/40'
+              }`}
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
+              Triple
+            </button>
+          </div>
+
+          {/* Desktop view Grid */}
+          <div className="hidden lg:grid grid-cols-2 gap-8">
             {rooms.map((room, i) => (
               <FadeUp key={room.type} delay={i * 0.12}>
-                <div className="bg-white rounded-3xl overflow-hidden border border-[#7B1113]/8 hover:shadow-2xl hover:shadow-[#7B1113]/8 transition-all duration-500 group">
-                  <div className="relative h-72 overflow-hidden">
-                    <img src={room.image} alt={room.type} className="w-full h-full object-cover group-hover:scale-107 transition-transform duration-700" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1A0A0B]/50 to-transparent" />
-                    <div className="absolute top-4 left-4 text-white text-xs font-semibold px-3.5 py-1.5 rounded-full" style={{ backgroundColor: room.badgeColor, fontFamily: "Inter, sans-serif" }}>
-                      {room.badge}
-                    </div>
-                    {/* Price overlay */}
-                    <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2">
-                      <span className="text-[#7B1113]" style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: "22px" }}>{room.price}</span>
-                      <span className="text-[#7A6A5A] text-xs" style={{ fontFamily: "Inter, sans-serif" }}>/mo</span>
-                    </div>
-                  </div>
-                  <div className="p-7">
-                    <h3 className="text-[#1A0A0B] mb-4" style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: "22px" }}>{room.type}</h3>
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {room.features.map((f) => (
-                        <span key={f} className="flex items-center gap-1.5 bg-[#FAF7F4] text-[#7A6A5A] text-xs px-3.5 py-1.5 rounded-full border border-[#DCCFC0]" style={{ fontFamily: "Inter, sans-serif" }}>
-                          <Check size={10} className="text-[#7B1113]" /> {f}
-                        </span>
-                      ))}
-                    </div>
-                    <Link to="/rooms" className="block w-full text-center bg-[#1A0A0B] hover:bg-[#7B1113] text-white py-3.5 rounded-2xl font-medium text-sm transition-colors duration-300" style={{ fontFamily: "Inter, sans-serif" }}>
-                      View Details & Book Visit
-                    </Link>
-                  </div>
-                </div>
+                <RoomCard room={room} />
               </FadeUp>
             ))}
+          </div>
+
+          {/* Mobile view horizontal slider with custom slide direction animation */}
+          <div className="block lg:hidden relative w-full overflow-hidden min-h-[500px]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeRoomIndex}
+                initial={{ opacity: 0, x: activeRoomIndex === 0 ? -60 : 60 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: activeRoomIndex === 0 ? 60 : -60 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className="w-full"
+              >
+                <RoomCard room={rooms[activeRoomIndex]} />
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Slider Navigation swapping buttons */}
+            <div className="flex justify-center items-center gap-6 mt-8">
+              <button
+                onClick={() => setActiveRoomIndex(c => (c === 0 ? 1 : 0))}
+                className="w-11 h-11 rounded-full bg-white border border-[#7B1113]/10 flex items-center justify-center text-[#7B1113] hover:bg-[#7B1113] hover:text-white transition-all shadow-sm cursor-pointer"
+                aria-label="Previous room"
+              >
+                <ChevronLeft size={18} />
+              </button>
+
+              {/* Slider indicator dots */}
+              <div className="flex gap-2">
+                {rooms.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveRoomIndex(idx)}
+                    className={`h-2.5 rounded-full transition-all duration-300 ${
+                      activeRoomIndex === idx ? 'bg-[#7B1113] w-6' : 'bg-[#7B1113]/20 w-2.5'
+                    }`}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
+              </div>
+
+              <button
+                onClick={() => setActiveRoomIndex(c => (c === 1 ? 0 : 1))}
+                className="w-11 h-11 rounded-full bg-white border border-[#7B1113]/10 flex items-center justify-center text-[#7B1113] hover:bg-[#7B1113] hover:text-white transition-all shadow-sm cursor-pointer"
+                aria-label="Next room"
+              >
+                <ChevronRight size={18} />
+              </button>
+            </div>
           </div>
         </div>
       </section>
