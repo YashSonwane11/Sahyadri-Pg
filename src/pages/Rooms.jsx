@@ -1,273 +1,298 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Check, ChevronLeft, ChevronRight, MessageCircle, Info, Shield, HelpCircle } from 'lucide-react';
-import { rooms, contactInfo } from '../data/pgData';
+import React, { useState, useRef } from "react";
+import { Link } from "react-router-dom";
+import { motion, useInView } from "framer-motion";
+import { Check, X, Phone, MessageCircle, ChevronLeft, ChevronRight, Zap } from "lucide-react";
 
-const FadeUp = ({ children, delay = 0, className = "" }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-80px" }}
-    transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
-    className={className}
-  >
-    {children}
-  </motion.div>
-);
-
-/* ── Custom Room Photo Carousel Slider (Airbnb style) ── */
-const RoomPhotoSlider = ({ images, type }) => {
-  const [activeIdx, setActiveIdx] = useState(0);
-
-  const prev = (e) => {
-    e.stopPropagation();
-    setActiveIdx((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-  };
-
-  const next = (e) => {
-    e.stopPropagation();
-    setActiveIdx((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-  };
-
+function FadeUp({ children, delay = 0, className = "" }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
-    <div className="relative w-full h-72 sm:h-80 rounded-3xl overflow-hidden group shadow-md bg-premium-gray">
-      {/* Photo */}
-      <img
-        src={images[activeIdx]}
-        alt={`${type} interior layout view ${activeIdx + 1}`}
-        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-        loading="lazy"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-
-      {/* Nav Controls */}
-      <button
-        onClick={prev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-premium-black flex items-center justify-center shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 cursor-pointer"
-        aria-label="Previous image"
-      >
-        <ChevronLeft size={16} />
-      </button>
-      <button
-        onClick={next}
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-premium-black flex items-center justify-center shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 cursor-pointer"
-        aria-label="Next image"
-      >
-        <ChevronRight size={16} />
-      </button>
-
-      {/* Pagination dots */}
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
-        {images.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={(e) => { e.stopPropagation(); setActiveIdx(idx); }}
-            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-              activeIdx === idx ? 'bg-white w-5' : 'bg-white/50'
-            }`}
-            aria-label={`Go to slide ${idx + 1}`}
-          />
-        ))}
-      </div>
-    </div>
-  );
-};
-
-export default function Rooms() {
-  return (
-    <div className="w-full bg-[#FAF7F4] pt-20">
-
-      {/* ═══ HERO BANNER ═══ */}
-      <section className="relative h-[45vh] min-h-[300px] flex items-center justify-center overflow-hidden bg-[#1A0A0B]">
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-40 scale-105"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=1920&q=80')" }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1A0A0B] via-[#1A0A0B]/60 to-transparent" />
-        
-        <div className="relative text-center px-4 max-w-3xl z-10">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="text-white text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4"
-            style={{ fontFamily: "Playfair Display, serif" }}
-          >
-            Rooms & Pricing
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="text-[#DCCFC0]/80 text-sm sm:text-base tracking-wide"
-            style={{ fontFamily: "Inter, sans-serif" }}
-          >
-            Sleek sharing options to fit your preference. Clean, ventilated, and study-focused.
-          </motion.p>
-        </div>
-      </section>
-
-      {/* ═══ WINGS INFO BANNER ═══ */}
-      <section className="py-12 bg-[#7B1113] relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10 text-left">
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-[#DCCFC0] shrink-0">
-              <Shield size={22} />
-            </div>
-            <div>
-              <h3 className="text-white text-lg font-bold" style={{ fontFamily: "Playfair Display, serif" }}>
-                100% Separate Boys & Girls Wings
-              </h3>
-              <p className="text-[#DCCFC0]/80 text-xs sm:text-sm max-w-xl" style={{ fontFamily: "Inter, sans-serif" }}>
-                To prioritize security and privacy, our accommodations are housed in entirely separate buildings. Each wing features dedicated entry gates, separate CCTV monitoring, and full-time wardens.
-              </p>
-            </div>
-          </div>
-          <span className="shrink-0 bg-white/12 border border-white/20 text-[#DCCFC0] px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider" style={{ fontFamily: "Inter, sans-serif" }}>
-            Security Verified ✅
-          </span>
-        </div>
-      </section>
-
-      {/* ═══ ROOM COMPARISON CARDS ═══ */}
-      <section className="py-20 sm:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16">
-          {rooms.map((room, idx) => (
-            <FadeUp 
-              key={room.id} 
-              delay={idx * 0.12}
-              className="bg-white rounded-[32px] overflow-hidden border border-[#7B1113]/8 shadow-lg hover:shadow-2xl transition-all duration-300 text-left flex flex-col h-full"
-            >
-              {/* Image Slider */}
-              <RoomPhotoSlider images={imgUrlsForFallback(room.images, room.id)} type={room.type} />
-
-              {/* Room details */}
-              <div className="p-8 flex flex-col justify-between flex-grow gap-8">
-                <div className="flex flex-col gap-4">
-                  <div className="flex justify-between items-start flex-wrap gap-4">
-                    <div>
-                      <h3 className="text-2xl font-bold text-[#1A0A0B]" style={{ fontFamily: "Playfair Display, serif" }}>
-                        {room.type}
-                      </h3>
-                      <p className="text-xs text-[#7A6A5A] italic font-semibold mt-1">"{room.tagline}"</p>
-                    </div>
-                    <div className="flex flex-col items-end">
-                      <span className="text-[10px] font-bold text-[#7A6A5A] uppercase tracking-wider">Starting from</span>
-                      <span className="text-2xl font-extrabold text-[#7B1113]" style={{ fontFamily: "Playfair Display, serif" }}>
-                        ₹{room.basePrice.toLocaleString('en-IN')}<span className="text-xs font-normal text-[#7A6A5A]"> /month</span>
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="h-px bg-[#EDE5D8] my-2" />
-
-                  {/* Bullet features */}
-                  <h4 className="text-xs font-bold text-[#1A0A0B] uppercase tracking-widest" style={{ fontFamily: "Inter, sans-serif" }}>
-                    Room Inclusions & Features:
-                  </h4>
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                    {room.features.map((feat, fIdx) => (
-                      <li key={fIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#7A6A5A]" style={{ fontFamily: "Inter, sans-serif" }}>
-                        <Check className="text-[#7B1113] shrink-0 mt-0.5" size={14} />
-                        <span>{feat}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Booking CTA row */}
-                <div className="flex flex-col sm:flex-row gap-4 mt-2">
-                  <a
-                    href={`https://wa.me/${contactInfo.whatsapp}?text=${encodeURIComponent(`Hi, I want to book a ${room.type}. Please share booking details.`)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 bg-[#7B1113] hover:bg-[#9b1416] text-white text-sm font-bold py-3.5 px-6 rounded-2xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 cursor-pointer"
-                    style={{ fontFamily: "Inter, sans-serif" }}
-                  >
-                    <MessageCircle size={16} />
-                    <span>Inquire / Book Room</span>
-                  </a>
-                  <a
-                    href="tel:+919504059393"
-                    className="border border-[#EDE5D8] hover:bg-[#FAF7F4] text-[#1A0A0B] text-sm font-semibold py-3.5 px-6 rounded-2xl transition-colors text-center"
-                    style={{ fontFamily: "Inter, sans-serif" }}
-                  >
-                    Call Manager
-                  </a>
-                </div>
-              </div>
-            </FadeUp>
-          ))}
-        </div>
-      </section>
-
-      {/* ═══ RENTAL FAQs & GENERAL GUIDELINES ═══ */}
-      <section className="py-20 sm:py-28 bg-[#EDE5D8]/35 border-t border-[#EDE5D8]/60">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeUp className="text-center mb-16 flex flex-col gap-3">
-            <span className="text-[#7B1113] text-xs font-bold uppercase tracking-widest" style={{ fontFamily: "Inter, sans-serif" }}>Booking Guide</span>
-            <h2 className="text-3xl font-extrabold text-[#1A0A0B]" style={{ fontFamily: "Playfair Display, serif" }}>
-              Frequently Asked Questions
-            </h2>
-            <p className="text-[#7A6A5A] text-sm leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
-              Crucial information regarding deposits, notice periods, and room booking guidelines.
-            </p>
-          </FadeUp>
-
-          <div className="space-y-6">
-            {[
-              {
-                q: "What is the security deposit amount?",
-                a: "A refundable security deposit equivalent to one month's rent is required at the time of booking to secure your bed. This is fully returned upon checkout after deducting any damages."
-              },
-              {
-                q: "What is the notice period requirement?",
-                a: "Students are required to give a minimum 30-day notice period before vacating their room. Rent is calculated on a full-month cycle."
-              },
-              {
-                q: "Are mess packages mandatory?",
-                a: "No, but we highly recommend them! Healthy home-style breakfast, lunch, and dinner cooked on-premises are bundled at highly economical monthly rates."
-              },
-              {
-                q: "Are visitors allowed in the rooms?",
-                a: "To ensure absolute security and comfort for all roommates, parents and local guardians are allowed inside visitor areas during designated hours, but overnight guest stays are strictly prohibited."
-              }
-            ].map((faq, fIdx) => (
-              <FadeUp 
-                key={fIdx} 
-                delay={fIdx * 0.08}
-                className="bg-white rounded-2xl p-6 sm:p-8 border border-[#7B1113]/8 shadow-sm text-left flex gap-4"
-              >
-                <div className="w-10 h-10 rounded-xl bg-[#7B1113]/8 text-[#7B1113] flex items-center justify-center shrink-0">
-                  <HelpCircle size={18} />
-                </div>
-                <div>
-                  <h4 className="text-base font-bold text-[#1A0A0B] mb-2" style={{ fontFamily: "Playfair Display, serif" }}>{faq.q}</h4>
-                  <p className="text-[#7A6A5A] text-xs sm:text-sm leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>{faq.a}</p>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
-        </div>
-      </section>
-
-    </div>
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 36 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      className={className}
+    >
+      {children}
+    </motion.div>
   );
 }
 
-// Fallback high-res Airbnb style dorm images in case default pgData links fails
-function imgUrlsForFallback(images, roomId) {
-  if (images && images.length > 0) return images;
-  if (roomId === 'double-sharing') {
-    return [
-      'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800&h=600&fit=crop&auto=format',
-      'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=800&h=600&fit=crop&auto=format',
-      'https://images.unsplash.com/photo-1554995207-c18c203602cb?w=800&h=600&fit=crop&auto=format'
-    ];
-  }
-  return [
-    'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&h=600&fit=crop&auto=format',
-    'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&h=600&fit=crop&auto=format',
-    'https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800&h=600&fit=crop&auto=format'
-  ];
+const roomData = {
+  double: {
+    label: "Double Sharing",
+    price: "₹7,500",
+    perPerson: "/month per person",
+    availability: "3 Available",
+    deposit: "₹15,000",
+    notice: "30 Days",
+    badge: "Most Popular",
+    desc: "Thoughtfully designed with two private study zones, individual wardrobes, and premium fittings. Perfect for students who value personal space without compromise.",
+    images: [
+      "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800&h=520&fit=crop&auto=format",
+      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800&h=520&fit=crop&auto=format",
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&h=520&fit=crop&auto=format",
+    ],
+    features: ["Attached Private Bathroom", "Two Study Desks & Chairs", "Individual Wardrobes", "AC Available (optional)", "High-Speed WiFi", "Power Backup", "Daily Room Cleaning", "24/7 Hot Water"],
+  },
+  triple: {
+    label: "Triple Sharing",
+    price: "₹5,500",
+    perPerson: "/month per person",
+    availability: "7 Available",
+    deposit: "₹11,000",
+    notice: "30 Days",
+    badge: "Best Value",
+    desc: "Spacious triple rooms with three individual sleeping zones. Great for students on a budget who still want premium amenities and a vibrant community experience.",
+    images: [
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&h=520&fit=crop&auto=format",
+      "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800&h=520&fit=crop&auto=format",
+      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800&h=520&fit=crop&auto=format",
+    ],
+    features: ["Shared Bathroom (1:3)", "Three Study Desks & Chairs", "Individual Wardrobes", "Fans & Lighting", "High-Speed WiFi", "Power Backup", "Daily Room Cleaning", "24/7 Hot Water"],
+  },
+};
+
+const comparisonFeatures = [
+  { feature: "Room Size", double: "~250 sq ft", triple: "~320 sq ft" },
+  { feature: "Occupancy", double: "2 Students", triple: "3 Students" },
+  { feature: "Bathroom", double: "Attached Private", triple: "Shared (1:3)" },
+  { feature: "Study Desk", double: true, triple: true },
+  { feature: "Individual Wardrobe", double: true, triple: true },
+  { feature: "Air Conditioning", double: "Optional (+₹500)", triple: false },
+  { feature: "WiFi Included", double: true, triple: true },
+  { feature: "Power Backup", double: true, triple: true },
+  { feature: "CCTV Coverage", double: true, triple: true },
+  { feature: "Monthly Rent", double: "₹7,500", triple: "₹5,500" },
+  { feature: "Security Deposit", double: "₹15,000", triple: "₹11,000" },
+];
+
+export default function Rooms() {
+  const [activeTab, setActiveTab] = useState("double");
+  const [imgIdx, setImgIdx] = useState(0);
+  const room = roomData[activeTab];
+
+  const switchTab = (tab) => {
+    setActiveTab(tab);
+    setImgIdx(0);
+  };
+
+  return (
+    <div className="bg-[#FAF7F4] pt-20">
+
+      {/* ─── Hero ─── */}
+      <section className="relative h-72 flex items-end overflow-hidden">
+        <motion.div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=1600&h=500&fit=crop&auto=format')" }}
+          initial={{ scale: 1.06 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 5, ease: "easeOut" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1A0A0B]/92 via-[#1A0A0B]/45 to-transparent" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-10">
+          <p className="text-[#DCCFC0]/60 text-xs uppercase tracking-widest mb-2" style={{ fontFamily: "Inter, sans-serif", fontWeight: 600 }}>Accommodation</p>
+          <h1 className="text-white" style={{ fontFamily: "Playfair Display, serif", fontWeight: 800, fontSize: "clamp(34px, 5vw, 66px)" }}>
+            Rooms & Pricing
+          </h1>
+        </div>
+      </section>
+
+      {/* ─── Tab + Details ─── */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          {/* Tabs */}
+          <FadeUp className="mb-12">
+            <div className="flex gap-2 bg-white border border-[#7B1113]/10 p-1.5 rounded-2xl w-fit shadow-sm">
+              {["double", "triple"].map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => switchTab(tab)}
+                  className={`px-7 py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${activeTab === tab ? "bg-[#7B1113] text-white shadow-md" : "text-[#7A6A5A] hover:text-[#1A0A0B]"}`}
+                  style={{ fontFamily: "Inter, sans-serif" }}
+                >
+                  {roomData[tab].label}
+                  {tab === "double" && <span className="ml-2 text-xs bg-[#DCCFC0]/60 text-[#7B1113] px-2 py-0.5 rounded-full">Popular</span>}
+                </button>
+              ))}
+            </div>
+          </FadeUp>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+
+            {/* Image gallery */}
+            <FadeUp>
+              <div>
+                <div className="relative rounded-3xl overflow-hidden h-[380px] mb-3 bg-[#EDE5D8] group">
+                  <motion.img
+                    key={`${activeTab}-${imgIdx}`}
+                    src={room.images[imgIdx]}
+                    alt={room.label}
+                    className="w-full h-full object-cover"
+                    initial={{ opacity: 0, scale: 1.04 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.45 }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1A0A0B]/25 to-transparent" />
+                  {/* Nav arrows */}
+                  <button
+                    onClick={() => setImgIdx((i) => (i - 1 + room.images.length) % room.images.length)}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur rounded-full flex items-center justify-center hover:bg-white transition-colors opacity-0 group-hover:opacity-100"
+                  >
+                    <ChevronLeft size={18} className="text-[#1A0A0B]" />
+                  </button>
+                  <button
+                    onClick={() => setImgIdx((i) => (i + 1) % room.images.length)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur rounded-full flex items-center justify-center hover:bg-white transition-colors opacity-0 group-hover:opacity-100"
+                  >
+                    <ChevronRight size={18} className="text-[#1A0A0B]" />
+                  </button>
+                  {/* Badge */}
+                  <div className="absolute top-4 left-4 bg-[#7B1113] text-white text-xs font-semibold px-3.5 py-1.5 rounded-full" style={{ fontFamily: "Inter, sans-serif" }}>
+                    {room.badge}
+                  </div>
+                </div>
+                {/* Thumbnails */}
+                <div className="flex gap-3">
+                  {room.images.map((img, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setImgIdx(i)}
+                      className={`flex-1 h-20 rounded-xl overflow-hidden border-2 transition-all ${imgIdx === i ? "border-[#7B1113] ring-2 ring-[#7B1113]/20" : "border-transparent"}`}
+                    >
+                      <img src={img} alt="" className="w-full h-full object-cover" />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </FadeUp>
+
+            {/* Details panel */}
+            <FadeUp delay={0.1}>
+              <div className="sticky top-24">
+                <div className="flex items-start justify-between mb-2">
+                  <h2 className="text-[#1A0A0B]" style={{ fontFamily: "Playfair Display, serif", fontWeight: 800, fontSize: "34px" }}>
+                    {room.label}
+                  </h2>
+                  <div className="text-right">
+                    <div className="text-[#7B1113]" style={{ fontFamily: "Playfair Display, serif", fontWeight: 800, fontSize: "38px", lineHeight: 1 }}>{room.price}</div>
+                    <div className="text-[#7A6A5A] text-xs" style={{ fontFamily: "Inter, sans-serif" }}>{room.perPerson}</div>
+                  </div>
+                </div>
+
+                <p className="text-[#7A6A5A] mb-6 leading-relaxed" style={{ fontFamily: "Inter, sans-serif", fontSize: "15px" }}>{room.desc}</p>
+
+                {/* Stats row */}
+                <div className="grid grid-cols-3 gap-3 mb-7">
+                  {[
+                    { label: "Availability", value: room.availability },
+                    { label: "Security Deposit", value: room.deposit },
+                    { label: "Notice Period", value: room.notice },
+                  ].map((s) => (
+                    <div key={s.label} className="bg-[#FAF7F4] border border-[#DCCFC0] rounded-2xl p-4 text-center">
+                      <div className="text-[#7B1113] font-semibold text-sm" style={{ fontFamily: "Inter, sans-serif" }}>{s.value}</div>
+                      <div className="text-[#7A6A5A] text-xs mt-0.5" style={{ fontFamily: "Inter, sans-serif" }}>{s.label}</div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Features */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-7">
+                  {room.features.map((f) => (
+                    <div key={f} className="flex items-center gap-2.5 text-sm text-[#1A0A0B]" style={{ fontFamily: "Inter, sans-serif" }}>
+                      <div className="w-5 h-5 bg-[#7B1113]/10 rounded-full flex items-center justify-center shrink-0">
+                        <Check size={11} className="text-[#7B1113]" />
+                      </div>
+                      {f}
+                    </div>
+                  ))}
+                </div>
+
+                {/* CTA buttons */}
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Link
+                    to="/contact"
+                    className="flex-1 bg-[#7B1113] text-white text-center py-4 rounded-2xl font-semibold hover:bg-[#9b1416] transition-colors text-sm"
+                    style={{ fontFamily: "Inter, sans-serif" }}
+                  >
+                    Book a Visit
+                  </Link>
+                  <a
+                    href="https://wa.me/919504059393"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex-1 bg-green-600 text-white text-center py-4 rounded-2xl font-semibold hover:bg-green-500 transition-colors text-sm flex items-center justify-center gap-2"
+                    style={{ fontFamily: "Inter, sans-serif" }}
+                  >
+                    <MessageCircle size={16} />
+                    WhatsApp Enquiry
+                  </a>
+                </div>
+
+                {/* Urgency nudge */}
+                <div className="mt-4 flex items-center gap-2 text-xs text-[#7A6A5A] bg-[#EDE5D8]/50 border border-[#DCCFC0] rounded-xl px-4 py-3" style={{ fontFamily: "Inter, sans-serif" }}>
+                  <Zap size={13} className="text-[#C4996A] shrink-0" />
+                  High demand — only {activeTab === "double" ? "3" : "7"} rooms left for this semester
+                </div>
+              </div>
+            </FadeUp>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Comparison Table ─── */}
+      <section className="py-24 bg-[#1A0A0B]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeUp className="text-center mb-14">
+            <h2 className="text-white" style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: "clamp(26px, 4vw, 42px)" }}>
+              Room Comparison
+            </h2>
+            <p className="text-[#DCCFC0]/50 mt-2" style={{ fontFamily: "Inter, sans-serif" }}>Compare and choose what's right for you</p>
+          </FadeUp>
+
+          <FadeUp delay={0.1}>
+            <div className="rounded-3xl overflow-hidden border border-white/8">
+              <div className="grid grid-cols-3 bg-[#7B1113] px-6 py-5">
+                <div className="text-[#DCCFC0]/70 text-sm font-medium" style={{ fontFamily: "Inter, sans-serif" }}>Feature</div>
+                <div className="text-white text-sm font-semibold text-center" style={{ fontFamily: "Inter, sans-serif" }}>Double Sharing</div>
+                <div className="text-white text-sm font-semibold text-center" style={{ fontFamily: "Inter, sans-serif" }}>Triple Sharing</div>
+              </div>
+              {comparisonFeatures.map((row, i) => (
+                <div key={row.feature} className={`grid grid-cols-3 px-6 py-4 border-b border-white/5 ${i % 2 === 0 ? "bg-white/3" : "bg-transparent"}`}>
+                  <div className="text-[#DCCFC0]/60 text-sm" style={{ fontFamily: "Inter, sans-serif" }}>{row.feature}</div>
+                  <div className="text-center">
+                    {typeof row.double === "boolean" ? (
+                      row.double
+                        ? <div className="w-5 h-5 bg-green-500/20 rounded-full flex items-center justify-center mx-auto"><Check size={12} className="text-green-400" /></div>
+                        : <div className="w-5 h-5 bg-red-500/20 rounded-full flex items-center justify-center mx-auto"><X size={12} className="text-red-400" /></div>
+                    ) : <span className="text-white text-sm" style={{ fontFamily: "Inter, sans-serif" }}>{row.double}</span>}
+                  </div>
+                  <div className="text-center">
+                    {typeof row.triple === "boolean" ? (
+                      row.triple
+                        ? <div className="w-5 h-5 bg-green-500/20 rounded-full flex items-center justify-center mx-auto"><Check size={12} className="text-green-400" /></div>
+                        : <div className="w-5 h-5 bg-red-500/20 rounded-full flex items-center justify-center mx-auto"><X size={12} className="text-red-400" /></div>
+                    ) : <span className="text-white text-sm" style={{ fontFamily: "Inter, sans-serif" }}>{row.triple}</span>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </FadeUp>
+
+          <FadeUp delay={0.15} className="mt-10 text-center">
+            <a
+              href="tel:9504059393"
+              className="inline-flex items-center gap-3 bg-white text-[#7B1113] px-8 py-4 rounded-full font-semibold hover:bg-[#DCCFC0] transition-colors"
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
+              <Phone size={16} />
+              Call for Booking: 9504059393
+            </a>
+          </FadeUp>
+        </div>
+      </section>
+    </div>
+  );
 }

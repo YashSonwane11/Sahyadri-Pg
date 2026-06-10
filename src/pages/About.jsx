@@ -1,190 +1,194 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Target, Eye, Heart, Shield, Sparkles, MapPin } from 'lucide-react';
+import React, { useRef } from "react";
+import { Link } from "react-router-dom";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { Target, Eye, Heart, Users, Home, Trophy, ArrowRight } from "lucide-react";
 
-/* ── fade-up animation wrapper ── */
-const FadeUp = ({ children, delay = 0, className = "" }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-80px" }}
-    transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
-    className={className}
-  >
-    {children}
-  </motion.div>
-);
+function FadeIn({ children, delay = 0, className = "" }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 36 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
-const galleryImages = [
-  { url: "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80", caption: "Premium Double Sharing Room Layout" },
-  { url: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=800&q=80", caption: "Sleek Individual Study Desks" },
-  { url: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80", caption: "Clean Shared Kitchenette Area" },
-  { url: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=800&q=80", caption: "Well-Ventilated Boys Wing Room" },
-  { url: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80", caption: "Cozy Girls Wing Shared Dorm" },
-  { url: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=800&q=80", caption: "RO Mineral Water Stations" }
+const journey = [
+  { year: "Day 1", icon: Home, title: "Move In", desc: "Step into your furnished room with all amenities ready from day one. Our team helps you settle in." },
+  { year: "Week 1", icon: Users, title: "Build Community", desc: "Connect with fellow students from MIT ADT and across India. Make friends for life." },
+  { year: "Month 1", icon: Heart, title: "Feel at Home", desc: "Our staff ensures you feel welcomed, safe, and genuinely cared for every single day." },
+  { year: "Always", icon: Trophy, title: "Academic Success", desc: "Thrive academically with a quiet, supportive environment built for student excellence." },
 ];
 
 export default function About() {
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const parallaxY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+
   return (
-    <div className="w-full bg-[#FAF7F4] pt-20">
-      
-      {/* ═══ SUB-PAGE HERO ═══ */}
-      <section className="relative h-[45vh] min-h-[300px] flex items-center justify-center overflow-hidden bg-[#1A0A0B]">
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-40 scale-105"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=1920&q=80')" }}
+    <div className="bg-[#FAF7F4] pt-20">
+
+      {/* Hero */}
+      <section ref={heroRef} className="relative h-80 flex items-end overflow-hidden">
+        <motion.div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1600&h=600&fit=crop&auto=format')",
+            y: parallaxY,
+          }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1A0A0B] via-[#1A0A0B]/60 to-transparent" />
-        
-        <div className="relative text-center px-4 max-w-3xl z-10">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="text-white text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4"
-            style={{ fontFamily: "Playfair Display, serif" }}
-          >
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1A0A0B]/92 via-[#1A0A0B]/45 to-transparent" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-12">
+          <p className="text-[#DCCFC0]/60 text-xs uppercase tracking-widest mb-2" style={{ fontFamily: "Inter, sans-serif", fontWeight: 600 }}>Est. 2018</p>
+          <h1 className="text-white" style={{ fontFamily: "Playfair Display, serif", fontWeight: 800, fontSize: "clamp(36px, 5vw, 68px)" }}>
             About Sahyadri PG
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="text-[#DCCFC0]/80 text-sm sm:text-base tracking-wide"
-            style={{ fontFamily: "Inter, sans-serif" }}
-          >
-            Providing Premium, Safe & Homely Accommodations near MIT ADT University
-          </motion.p>
+          </h1>
         </div>
       </section>
 
-      {/* ═══ OUR STORY ═══ */}
-      <section className="py-20 sm:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
-          <FadeUp className="lg:col-span-6 flex flex-col gap-6 text-left">
-            <span className="text-[#7B1113] text-xs font-bold uppercase tracking-widest" style={{ fontFamily: "Inter, sans-serif" }}>
-              Our Story
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1A0A0B] leading-tight" style={{ fontFamily: "Playfair Display, serif" }}>
-              A Home Away From Home <br />
-              <span className="text-[#7B1113]">Since 2018</span>
-            </h2>
-            <p className="text-[#7A6A5A] text-sm sm:text-base leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
-              Sahyadri PG was established with a singular vision: to address the lack of structured, high-quality, and secure student accommodations near MIT ADT University, Loni Kalbhor. Over the years, we have housed more than 500 students, building a reputation of trust and reliability.
-            </p>
-            <p className="text-[#7A6A5A] text-sm sm:text-base leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
-              We understand that transition to college life is both exciting and challenging. By providing a clean study environment, healthy homely food, and rigorous 24/7 security, we make sure students can focus completely on their academic achievements while feeling perfectly at home.
-            </p>
-            <div className="flex items-center gap-3 bg-[#7B1113]/5 border border-[#7B1113]/10 p-4 rounded-2xl w-fit">
-              <MapPin size={18} className="text-[#7B1113] shrink-0" />
-              <span className="text-xs sm:text-sm font-semibold text-[#1A0A0B]" style={{ fontFamily: "Inter, sans-serif" }}>
-                Chintamani Park, Loni Kalbhor (5 min from MIT ADT campus)
-              </span>
-            </div>
-          </FadeUp>
-
-          <FadeUp className="lg:col-span-6 grid grid-cols-2 gap-4" delay={0.15}>
-            <div className="space-y-4">
-              <img 
-                src="https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=500&q=80" 
-                alt="Cozy room interiors" 
-                className="w-full h-64 object-cover rounded-3xl border border-[#7B1113]/8 shadow-md"
-              />
-              <div className="bg-[#7B1113] text-white p-6 rounded-3xl text-center shadow-lg">
-                <span className="block text-4xl font-extrabold mb-1" style={{ fontFamily: "Playfair Display, serif" }}>500+</span>
-                <span className="text-xs uppercase tracking-wider text-[#DCCFC0]" style={{ fontFamily: "Inter, sans-serif" }}>Students Housed</span>
-              </div>
-            </div>
-            <div className="space-y-4 pt-8">
-              <div className="bg-white p-6 rounded-3xl text-center border border-[#7B1113]/8 shadow-sm">
-                <span className="block text-4xl font-extrabold text-[#7B1113] mb-1" style={{ fontFamily: "Playfair Display, serif" }}>24/7</span>
-                <span className="text-xs uppercase tracking-wider text-[#7A6A5A]" style={{ fontFamily: "Inter, sans-serif" }}>Strict Security</span>
-              </div>
-              <img 
-                src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=500&q=80" 
-                alt="Study environment" 
-                className="w-full h-64 object-cover rounded-3xl border border-[#7B1113]/8 shadow-md"
-              />
-            </div>
-          </FadeUp>
-
-        </div>
-      </section>
-
-      {/* ═══ MISSION & VISION ═══ */}
-      <section className="py-20 sm:py-28 bg-[#EDE5D8]/35 border-y border-[#EDE5D8]/60">
+      {/* Our Story */}
+      <section className="py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            {/* Card 1: Mission */}
-            <FadeUp className="bg-white rounded-3xl p-8 border border-[#7B1113]/8 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col gap-5">
-              <div className="w-12 h-12 rounded-2xl bg-[#7B1113]/8 flex items-center justify-center text-[#7B1113]">
-                <Target size={22} />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <FadeIn>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-4">
+                  <div className="rounded-3xl overflow-hidden h-64">
+                    <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=400&h=320&fit=crop&auto=format" alt="Room" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="rounded-3xl overflow-hidden h-40">
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=200&fit=crop&auto=format" alt="Kitchen" className="w-full h-full object-cover" />
+                  </div>
+                </div>
+                <div className="pt-8 space-y-4">
+                  <div className="rounded-3xl overflow-hidden h-40">
+                    <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400&h=200&fit=crop&auto=format" alt="Study" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="rounded-3xl overflow-hidden h-64">
+                    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=320&fit=crop&auto=format" alt="Common area" className="w-full h-full object-cover" />
+                  </div>
+                </div>
               </div>
-              <h3 className="text-[#1A0A0B] text-xl font-bold" style={{ fontFamily: "Playfair Display, serif" }}>Our Mission</h3>
-              <p className="text-[#7A6A5A] text-sm leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
-                To design and maintain premium living spaces that offer safety, comfort, and nutrition to support students' academic success and personal growth.
-              </p>
-            </FadeUp>
+            </FadeIn>
 
-            {/* Card 2: Vision */}
-            <FadeUp className="bg-white rounded-3xl p-8 border border-[#7B1113]/8 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col gap-5" delay={0.1}>
-              <div className="w-12 h-12 rounded-2xl bg-[#7B1113]/8 flex items-center justify-center text-[#7B1113]">
-                <Eye size={22} />
+            <FadeIn delay={0.12}>
+              <p className="text-[#7B1113] text-xs uppercase tracking-widest mb-4" style={{ fontFamily: "Inter, sans-serif", fontWeight: 600 }}>Our Story</p>
+              <h2 className="text-[#1A0A0B] mb-6" style={{ fontFamily: "Playfair Display, serif", fontWeight: 800, fontSize: "clamp(28px, 3vw, 42px)", lineHeight: 1.2 }}>
+                A Home Away From Home for 500+ Students
+              </h2>
+              <p className="text-[#7A6A5A] mb-5 leading-relaxed" style={{ fontFamily: "Inter, sans-serif", fontSize: "16px" }}>
+                Sahyadri PG was founded with a single vision: provide students near MIT ADT University with accommodation that doesn't compromise on safety, comfort, or nutrition. What started as a 20-room facility in 2018 has grown into one of Loni Kalbhor's most trusted student residences.
+              </p>
+              <p className="text-[#7A6A5A] mb-8 leading-relaxed" style={{ fontFamily: "Inter, sans-serif", fontSize: "16px" }}>
+                We believe a student's living environment directly impacts academic performance. That's why we've invested in high-speed internet, nutritious meals, and a safe, supportive community where every student can focus on what matters most — their education.
+              </p>
+              <div className="flex items-center gap-4">
+                <Link to="/contact" className="flex items-center gap-2 bg-[#7B1113] text-white px-7 py-3.5 rounded-full font-semibold hover:bg-[#9b1416] transition-colors group" style={{ fontFamily: "Inter, sans-serif" }}>
+                  Schedule a Visit <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <a href="tel:9504059393" className="text-[#7B1113] font-medium text-sm hover:underline" style={{ fontFamily: "Inter, sans-serif" }}>Call: 9504059393</a>
               </div>
-              <h3 className="text-[#1A0A0B] text-xl font-bold" style={{ fontFamily: "Playfair Display, serif" }}>Our Vision</h3>
-              <p className="text-[#7A6A5A] text-sm leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
-                To become the most preferred student housing provider near MIT ADT, recognized for building a supportive community, top-tier service standards, and trust.
-              </p>
-            </FadeUp>
-
-            {/* Card 3: Values */}
-            <FadeUp className="bg-white rounded-3xl p-8 border border-[#7B1113]/8 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col gap-5" delay={0.2}>
-              <div className="w-12 h-12 rounded-2xl bg-[#7B1113]/8 flex items-center justify-center text-[#7B1113]">
-                <Shield size={22} />
-              </div>
-              <h3 className="text-[#1A0A0B] text-xl font-bold" style={{ fontFamily: "Playfair Display, serif" }}>Our Values</h3>
-              <p className="text-[#7A6A5A] text-sm leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
-                Strict hygiene, student comfort first, absolute safety protocol, transparency in communication, and continuous improvement based on feedback.
-              </p>
-            </FadeUp>
-
+            </FadeIn>
           </div>
         </div>
       </section>
 
-      {/* ═══ PROPERTY MASONRY GALLERY ═══ */}
-      <section className="py-20 sm:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <FadeUp className="max-w-2xl mx-auto mb-16 flex flex-col gap-3">
-          <span className="text-[#7B1113] text-xs font-bold uppercase tracking-widest" style={{ fontFamily: "Inter, sans-serif" }}>Gallery</span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1A0A0B]" style={{ fontFamily: "Playfair Display, serif" }}>
-            Take a Look Inside
-          </h2>
-          <p className="text-[#7A6A5A] text-sm font-body leading-relaxed">
-            High-quality snapshots of double-sharing bedrooms, study wardrobes, clean kitchenettes, and modern washrooms.
-          </p>
-        </FadeUp>
-
-        {/* Masonry Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {galleryImages.map((img, idx) => (
-            <FadeUp 
-              key={idx} 
-              delay={idx * 0.08}
-              className="relative rounded-2xl overflow-hidden group shadow-md aspect-[4/3] bg-premium-gray"
-            >
-              <img 
-                src={img.url} 
-                alt={img.caption} 
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-107"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-6" />
-              <div className="absolute bottom-6 left-6 right-6 text-white text-sm font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-3 group-hover:translate-y-0 text-left" style={{ fontFamily: "Inter, sans-serif" }}>
-                {img.caption}
+      {/* Mission & Vision */}
+      <section className="py-20 bg-[#1A0A0B]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeIn className="text-center mb-14">
+            <h2 className="text-white" style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: "clamp(28px, 4vw, 44px)" }}>What Drives Us</h2>
+          </FadeIn>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <FadeIn delay={0.08}>
+              <div className="bg-[#7B1113] rounded-3xl p-10 h-full">
+                <div className="w-14 h-14 bg-white/15 rounded-2xl flex items-center justify-center mb-6">
+                  <Target size={28} className="text-white" />
+                </div>
+                <h3 className="text-white mb-4" style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: "26px" }}>Our Mission</h3>
+                <p className="text-white/80 leading-relaxed" style={{ fontFamily: "Inter, sans-serif", fontSize: "16px" }}>
+                  To create a premium, secure, and nurturing living environment where students from across India can focus entirely on their academic and personal growth — without worrying about daily necessities.
+                </p>
               </div>
-            </FadeUp>
-          ))}
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <div className="bg-[#DCCFC0]/8 border border-[#DCCFC0]/15 rounded-3xl p-10 h-full">
+                <div className="w-14 h-14 bg-[#7B1113]/30 rounded-2xl flex items-center justify-center mb-6">
+                  <Eye size={28} className="text-[#DCCFC0]" />
+                </div>
+                <h3 className="text-white mb-4" style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: "26px" }}>Our Vision</h3>
+                <p className="text-[#DCCFC0]/80 leading-relaxed" style={{ fontFamily: "Inter, sans-serif", fontSize: "16px" }}>
+                  To become the most loved student housing brand in Maharashtra — recognized not just for amenities, but for the community, culture, and confidence we build in every student who calls Sahyadri home.
+                </p>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* Timeline */}
+      <section className="py-28 bg-[#FAF7F4]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeIn className="text-center mb-16">
+            <p className="text-[#7B1113] text-xs uppercase tracking-widest mb-3" style={{ fontFamily: "Inter, sans-serif", fontWeight: 600 }}>Your Journey</p>
+            <h2 className="text-[#1A0A0B]" style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: "clamp(28px, 4vw, 44px)" }}>
+              Why Students Love Living Here
+            </h2>
+          </FadeIn>
+
+          <div className="relative">
+            <div className="absolute left-[30px] lg:left-1/2 top-6 bottom-6 w-px bg-[#7B1113]/15" />
+            <div className="space-y-10">
+              {journey.map((step, i) => (
+                <FadeIn key={step.title} delay={i * 0.08}>
+                  <div className={`relative flex items-start gap-6 lg:gap-0 ${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"}`}>
+                    <div className="flex-1 hidden lg:block" />
+                    <div className="absolute left-4 lg:left-1/2 lg:-translate-x-1/2 w-12 h-12 bg-[#7B1113] rounded-2xl flex items-center justify-center z-10 shadow-lg shadow-[#7B1113]/30 shrink-0">
+                      <step.icon size={20} className="text-white" />
+                    </div>
+                    <div className={`flex-1 pl-16 lg:pl-0 ${i % 2 === 0 ? "lg:pl-8" : "lg:pr-8"}`}>
+                      <div className="bg-white rounded-2xl p-6 border border-[#7B1113]/8 shadow-sm">
+                        <span className="text-[#7B1113] text-xs font-bold uppercase tracking-widest" style={{ fontFamily: "Inter, sans-serif" }}>{step.year}</span>
+                        <h3 className="text-[#1A0A0B] mt-1 mb-2" style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: "20px" }}>{step.title}</h3>
+                        <p className="text-[#7A6A5A] text-sm leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>{step.desc}</p>
+                      </div>
+                    </div>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery */}
+      <section className="py-20 bg-[#EDE5D8]/40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeIn className="text-center mb-12">
+            <h2 className="text-[#1A0A0B]" style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: "clamp(26px, 4vw, 42px)" }}>Glimpses of Sahyadri</h2>
+          </FadeIn>
+          <div className="columns-2 lg:columns-3 gap-4 space-y-4">
+            {[
+              "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=400&h=300&fit=crop&auto=format",
+              "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=400&h=500&fit=crop&auto=format",
+              "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400&h=280&fit=crop&auto=format",
+              "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=400&fit=crop&auto=format",
+              "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop&auto=format",
+              "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=500&fit=crop&auto=format",
+            ].map((src, i) => (
+              <FadeIn key={i} delay={i * 0.05}>
+                <div className="break-inside-avoid rounded-2xl overflow-hidden group cursor-pointer">
+                  <img src={src} alt={`Gallery ${i + 1}`} className="w-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                </div>
+              </FadeIn>
+            ))}
+          </div>
         </div>
       </section>
     </div>
