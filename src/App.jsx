@@ -4,6 +4,9 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import FloatingActions from './components/FloatingActions';
 import Home from './pages/Home';
+import About from './pages/About';
+import Amenities from './pages/Amenities';
+import Rooms from './pages/Rooms';
 
 // A premium temporary page component for routes that are yet to be built
 const ComingSoonPage = ({ pageName, desc }) => (
@@ -40,9 +43,9 @@ function App() {
       <main className="flex-grow">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<ComingSoonPage pageName="About Us" desc="Explore the story of Sahyadri PG, our mission, vision, and look at the masonry gallery of the property." />} />
-          <Route path="/amenities" element={<ComingSoonPage pageName="Amenities & Services" desc="Detailed cards view of our 12+ student facilities, daily room cleaning, high-speed WiFi, laundry services, and parking." />} />
-          <Route path="/rooms" element={<ComingSoonPage pageName="Rooms & Pricing" desc="Compare double and triple sharing bedrooms, check features, monthly rates, and view high-resolution room photos." />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/amenities" element={<Amenities />} />
+          <Route path="/rooms" element={<Rooms />} />
           <Route path="/mess" element={<ComingSoonPage pageName="Mess Package & Menu" desc="Take a look at our daily meal plans (Breakfast, Lunch, Dinner), nutritional highlights, and weekly restaurant-style menu." />} />
           <Route path="/events" element={<ComingSoonPage pageName="Event Celebration" desc="Instagram-style masonry grid showcasing birthday celebrations, festival gatherings, and student farewells." />} />
           <Route path="/contact" element={<ComingSoonPage pageName="Contact Us" desc="Direct phone numbers, embedded Google Maps direction coordinates, and instant contact options." />} />
