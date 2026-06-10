@@ -12,6 +12,8 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const isHomePage = location.pathname === '/';
+  const showSolid = isScrolled || !isHomePage;
 
   // Scroll detection to update header background opacity
   useEffect(() => {
@@ -33,7 +35,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${showSolid
         ? 'bg-soft-beige/85 backdrop-blur-md border-b border-[#f5efeb]/40 shadow-sm py-3'
         : 'bg-transparent py-5'
         }`}
@@ -53,7 +55,7 @@ export default function Navbar() {
                 to={link.path}
                 className={({ isActive }) =>
                   `font-body text-xs xl:text-sm font-semibold tracking-wide transition-colors hover:text-primary py-2.5 shrink-0 whitespace-nowrap relative ${
-                    isScrolled
+                    showSolid
                       ? isActive ? 'text-primary' : 'text-premium-black'
                       : isActive ? 'text-white font-bold' : 'text-white/95'
                   }`
@@ -63,7 +65,7 @@ export default function Navbar() {
                   <>
                     <span className="pb-1 block">{link.name}</span>
                     {isActive && (
-                      <span className={`absolute bottom-0 left-0 right-0 h-0.5 rounded-full ${isScrolled ? 'bg-primary' : 'bg-white'}`} />
+                      <span className={`absolute bottom-0 left-0 right-0 h-0.5 rounded-full ${showSolid ? 'bg-primary' : 'bg-white'}`} />
                     )}
                   </>
                 )}
@@ -90,7 +92,7 @@ export default function Navbar() {
               id="mobile-menu-toggle"
               aria-label="Toggle menu"
               className={`p-2 rounded-full transition-colors ${
-                isScrolled ? 'text-premium-black hover:bg-premium-black/5' : 'text-white hover:bg-white/10'
+                showSolid ? 'text-premium-black hover:bg-premium-black/5' : 'text-white hover:bg-white/10'
               }`}
             >
               {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
