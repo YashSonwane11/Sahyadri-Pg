@@ -3,10 +3,14 @@ import { NavLink, Link, useLocation } from 'react-router-dom';
 import { FaPhoneAlt, FaBars, FaTimes } from 'react-icons/fa';
 import { navLinks, contactInfo } from '../data/pgData';
 import logoSahyadri from '../assets/logo-sahyadri.svg';
+import logoSahyadriWhite from '../assets/logo-sahyadri-white.svg';
 
-export const Logo = ({ className = 'h-10' }) => (
-  <img src={logoSahyadri} alt="Sahyadri PG Logo" className={`${className} w-auto object-contain`} />
-);
+export const Logo = ({ className = 'h-10', variant = 'dark' }) => {
+  const src = variant === 'white' ? logoSahyadriWhite : logoSahyadri;
+  return (
+    <img src={src} alt="Sahyadri PG Logo" className={`${className} w-auto object-contain`} />
+  );
+};
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,7 +48,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between gap-4">
           {/* Brand Logo */}
           <Link to="/" id="nav-logo" aria-label="Sahyadri PG Home" className="shrink-0">
-            <Logo className="h-10 sm:h-12 text-primary" />
+            <Logo className="h-10 sm:h-12" variant={showSolid ? 'dark' : 'white'} />
           </Link>
 
           {/* Desktop Navigation Link Items - centered with layout-stable spacing and font scaling */}

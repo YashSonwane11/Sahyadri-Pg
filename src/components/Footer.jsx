@@ -12,7 +12,7 @@ export default function Footer() {
           {/* Column 1: Brand details */}
           <div className="flex flex-col gap-6">
             <div className="text-white">
-              <Logo className="h-10 text-white" />
+              <Logo className="h-10" variant="white" />
             </div>
             <p className="text-sm leading-relaxed text-[#f5efeb]/60">
               Providing clean, comfortable, safe, and highly affordable luxury student accommodations near MIT ADT University, Loni Kalbhor, Pune. Experience premium student living.
