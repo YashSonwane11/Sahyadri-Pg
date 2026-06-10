@@ -2,26 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { FaPhoneAlt, FaBars, FaTimes } from 'react-icons/fa';
 import { navLinks, contactInfo } from '../data/pgData';
+import logoSahyadri from '../assets/logo-sahyadri.svg';
 
-// Custom inline SVG logo matching the Sahyadri theme (mountain + calligraphy style text)
 export const Logo = ({ className = 'h-10' }) => (
-  <div className="flex items-center gap-2">
-    <svg viewBox="0 0 100 80" className={`${className} fill-current text-primary`} xmlns="http://www.w3.org/2000/svg">
-      {/* Mountain outline */}
-      <polygon points="50,15 15,70 85,70" fill="none" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-      <polygon points="50,15 40,40 55,50 65,70 85,70 50,15" fill="currentColor" opacity="0.15" />
-      {/* Small peak next to it */}
-      <polygon points="70,40 50,70 90,70" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-      {/* Snow cap line on main peak */}
-      <polyline points="40,32 50,42 60,32" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
-      {/* Sun rising */}
-      <circle cx="50" cy="70" r="10" fill="none" stroke="#d4af37" strokeWidth="4" strokeDasharray="3 3" />
-    </svg>
-    <div className="flex flex-col leading-none">
-      <span className="font-sans font-extrabold text-xl tracking-wider text-primary">SAHYADRI</span>
-      <span className="font-sans text-[10px] tracking-widest text-[#a39e95] uppercase font-bold">Luxury PG Living</span>
-    </div>
-  </div>
+  <img src={logoSahyadri} alt="Sahyadri PG Logo" className={`${className} w-auto object-contain`} />
 );
 
 export default function Navbar() {
