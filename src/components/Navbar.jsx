@@ -38,7 +38,8 @@ export default function Navbar() {
   }, [location]);
 
   return (
-    <header
+    <>
+      <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${showSolid
         ? 'bg-soft-beige/85 backdrop-blur-md border-b border-[#f5efeb]/40 shadow-sm py-3'
         : 'bg-transparent py-5'
@@ -104,15 +105,16 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+    </header>
 
       {/* Mobile Nav Sidebar Drawer Overlay */}
       {isOpen && (
-        <div className="xl:hidden fixed inset-0 z-40 bg-premium-black/40 backdrop-blur-sm transition-opacity" onClick={() => setIsOpen(false)} />
+        <div className="xl:hidden fixed inset-0 z-[60] bg-premium-black/40 backdrop-blur-sm transition-opacity" onClick={() => setIsOpen(false)} />
       )}
 
       {/* Mobile Nav Sidebar Drawer Content */}
       <div
-        className={`xl:hidden fixed top-0 right-0 z-50 h-full w-[80vw] max-w-[400px] bg-soft-beige shadow-2xl p-6 transition-transform duration-300 ease-in-out transform ${isOpen ? 'translate-x-0' : 'translate-x-full'
+        className={`xl:hidden fixed top-0 right-0 z-[70] h-screen w-[80vw] max-w-[400px] bg-soft-beige shadow-2xl p-6 transition-transform duration-300 ease-in-out transform ${isOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
       >
         <div className="flex items-center justify-between border-b border-[#f5efeb] pb-6 mb-6">
@@ -165,6 +167,6 @@ export default function Navbar() {
           </a>
         </div>
       </div>
-    </header>
+    </>
   );
 }
