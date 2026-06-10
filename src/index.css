@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #800020;
+  --color-primary-dark: #5a0016;
+  --color-primary-light: #9e1b32;
+  --color-premium-black: #121212;
+  --color-premium-gray: #1a1a1a;
+  --color-soft-beige: #fdfbf7;
+  --color-soft-beige-dark: #f5efeb;
+  --color-accent-gold: #d4af37;
+  --color-accent-gold-dark: #aa841e;
+
+  --font-sans: "Outfit", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+/* Custom base styles and scrollbar overrides */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-soft-beige);
+    color: var(--color-premium-black);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
+  }
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.glass-dark {
+  background: rgba(18, 18, 18, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-soft-beige);
+}
+::-webkit-scrollbar-thumb {
+  background: #d1cbc2;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a39e95;
+}
+
+/* Swiper custom pagination active color override */
+.swiper-pagination-bullet-active {
+  background: #800020 !important;
+  width: 24px !important;
+  border-radius: 4px !important;
+  transition: all 0.3s ease;
+}
+
+/* Stats counter card glow */
+.card-glow:hover {
+  box-shadow: 0 10px 30px -10px rgba(128, 0, 32, 0.15);
+}
