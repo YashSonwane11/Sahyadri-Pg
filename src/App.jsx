@@ -3,6 +3,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import FloatingActions from './components/FloatingActions';
+import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import About from './pages/About';
 import Amenities from './pages/Amenities';
@@ -39,6 +40,8 @@ const ComingSoonPage = ({ pageName, desc }) => (
 function App() {
   return (
     <div className="flex flex-col min-h-screen bg-soft-beige text-premium-black selection:bg-primary/20 selection:text-primary">
+      {/* Scroll restoration helper */}
+      <ScrollToTop />
       {/* Dynamic Sticky Glassmorphism Header */}
       <Navbar />
 

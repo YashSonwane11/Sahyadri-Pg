@@ -146,34 +146,43 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* ─── Map (full width) ─── */}
-      <section id="map" className="h-80 relative">
-        <iframe
-          title="Sahyadri PG Location — MIT ADT University, Loni Kalbhor"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.999!2d73.9383!3d18.4777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2eaed9a1c0001%3A0x0!2sMIT%20ADT%20University%2C%20Loni%20Kalbhor!5e0!3m2!1sen!2sin!4v1"
-          className="w-full h-full"
-          style={{ border: 0, filter: "grayscale(20%) contrast(1.1)" }}
-          allowFullScreen
-          loading="lazy"
-        />
-        {/* Overlay card */}
-        <div className="absolute top-4 left-4 bg-white rounded-2xl px-5 py-4 shadow-xl max-w-xs">
-          <div className="flex items-center gap-2 mb-1">
-            <div className="w-2 h-2 bg-[#7B1113] rounded-full animate-pulse" />
-            <span className="text-[#7B1113] text-xs font-semibold uppercase tracking-wider" style={{ fontFamily: "Inter, sans-serif" }}>Sahyadri PG</span>
-          </div>
-          <p className="text-[#1A0A0B] text-sm leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
-            Chintamani Park, Near MIT ADT University, Loni Kalbhor
-          </p>
-          <a
-            href="https://maps.google.com/?q=MIT+ADT+University+Loni+Kalbhor"
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center gap-1 text-[#7B1113] text-xs font-medium mt-2 hover:gap-2 transition-all"
-            style={{ fontFamily: "Inter, sans-serif" }}
-          >
-            Get Directions <ArrowRight size={12} />
-          </a>
+      {/* ─── Map (containerized) ─── */}
+      <section id="map" className="py-12 bg-[#FAF7F4]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeUp>
+            <div className="relative rounded-3xl overflow-hidden shadow-lg border border-[#7B1113]/8 h-[400px] sm:h-[480px]">
+              <iframe
+                title="Sahyadri PG Location — MIT ADT University, Loni Kalbhor"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.999!2d73.9383!3d18.4777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2eaed9a1c0001%3A0x0!2sMIT%20ADT%20University%2C%20Loni%20Kalbhor!5e0!3m2!1sen!2sin!4v1"
+                className="w-full h-full"
+                style={{ border: 0, filter: "grayscale(10%) contrast(1.05)" }}
+                allowFullScreen
+                loading="lazy"
+              />
+              {/* Overlay card */}
+              <div className="absolute top-6 left-6 bg-white/95 backdrop-blur-md rounded-2xl p-5 shadow-xl max-w-[280px] sm:max-w-xs border border-[#7B1113]/5">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#7B1113]"></span>
+                  </span>
+                  <span className="text-[#7B1113] text-xs font-bold uppercase tracking-wider" style={{ fontFamily: "Inter, sans-serif" }}>Sahyadri PG</span>
+                </div>
+                <p className="text-[#1A0A0B] text-sm font-medium leading-relaxed mb-3" style={{ fontFamily: "Inter, sans-serif" }}>
+                  Chintamani Park, Near MIT ADT University, Loni Kalbhor
+                </p>
+                <a
+                  href="https://maps.google.com/?q=MIT+ADT+University+Loni+Kalbhor"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 bg-[#7B1113] text-white text-xs font-semibold px-4 py-2 rounded-xl hover:bg-[#9b1416] transition-all"
+                  style={{ fontFamily: "Inter, sans-serif" }}
+                >
+                  Get Directions <ArrowRight size={12} />
+                </a>
+              </div>
+            </div>
+          </FadeUp>
         </div>
       </section>
 
@@ -187,7 +196,7 @@ export default function Contact() {
               <FadeUp>
                 <p className="text-[#7B1113] text-xs uppercase tracking-widest mb-3" style={{ fontFamily: "Inter, sans-serif", fontWeight: 600 }}>Enquiry</p>
                 <h2 className="text-[#1A0A0B] mb-5" style={{ fontFamily: "Playfair Display, serif", fontWeight: 800, fontSize: "clamp(26px, 3vw, 38px)", lineHeight: 1.2 }}>
-                  We'll Call You Back Within 2 Hours
+                  We'll Call You Back
                 </h2>
                 <p className="text-[#7A6A5A] mb-8 leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
                   Fill in the form and our team will personally reach out to discuss availability, pricing, and arrange a free visit at your convenience.
@@ -245,7 +254,7 @@ export default function Contact() {
                         Enquiry Received!
                       </h4>
                       <p className="text-[#7A6A5A]" style={{ fontFamily: "Inter, sans-serif" }}>
-                        Our team will call you back within 2 hours. Thank you for choosing Sahyadri PG!
+                        Our team will call you back shortly. Thank you for choosing Sahyadri PG!
                       </p>
                     </motion.div>
                   ) : (
@@ -340,7 +349,7 @@ export default function Contact() {
                       </motion.button>
 
                       <p className="text-center text-xs text-[#7A6A5A]" style={{ fontFamily: "Inter, sans-serif" }}>
-                        We'll call you back within 2 hours · No spam, ever
+                        We'll call you back shortly · No spam, ever
                       </p>
                     </form>
                   )}
