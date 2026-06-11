@@ -6,15 +6,15 @@ import { Logo } from './Navbar';
 
 export default function Footer() {
   return (
-    <footer className="bg-premium-black text-[#f5efeb]/80 border-t border-[#f5efeb]/10 pt-16 pb-8">
+    <footer className="bg-premium-black text-[#f5efeb]/80 border-t border-[#f5efeb]/10 pt-10 md:pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-8 mb-12">
           {/* Column 1: Brand details */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4 md:gap-6">
             <div className="text-white">
               <Logo className="h-10" variant="white" />
             </div>
-            <p className="text-sm leading-relaxed text-[#f5efeb]/60">
+            <p className="hidden md:block text-sm leading-relaxed text-[#f5efeb]/60">
               Providing clean, comfortable, safe, and highly affordable luxury student accommodations near MIT ADT University, Loni Kalbhor, Pune. Experience premium student living.
             </p>
             <div className="flex gap-4">

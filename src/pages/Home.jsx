@@ -481,24 +481,26 @@ export function HomePage() {
 
             {/* Side panel */}
             <div className="space-y-3">
-              {testimonials.map((t, i) => (
-                <button
-                  key={i}
-                  onClick={() => setSlide(i)}
-                  className={`w-full text-left rounded-2xl p-5 border transition-all duration-300 ${i === slide ? "bg-white/10 border-[#7B1113]" : "bg-white/4 border-white/8 hover:bg-white/8"}`}
-                >
-                  <div className="flex items-center gap-3">
-                    <img src={t.avatar} alt={t.name} className="w-10 h-10 rounded-full object-cover shrink-0" />
-                    <div className="min-w-0">
-                      <div className="text-white text-sm font-medium truncate" style={{ fontFamily: "Inter, sans-serif" }}>{t.name}</div>
-                      <div className="text-white/40 text-xs truncate" style={{ fontFamily: "Inter, sans-serif" }}>{t.college}</div>
+              <div className="hidden lg:block space-y-3">
+                {testimonials.map((t, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setSlide(i)}
+                    className={`w-full text-left rounded-2xl p-5 border transition-all duration-300 ${i === slide ? "bg-white/10 border-[#7B1113]" : "bg-white/4 border-white/8 hover:bg-white/8"}`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <img src={t.avatar} alt={t.name} className="w-10 h-10 rounded-full object-cover shrink-0" />
+                      <div className="min-w-0">
+                        <div className="text-white text-sm font-medium truncate" style={{ fontFamily: "Inter, sans-serif" }}>{t.name}</div>
+                        <div className="text-white/40 text-xs truncate" style={{ fontFamily: "Inter, sans-serif" }}>{t.college}</div>
+                      </div>
+                      <div className="flex gap-0.5 ml-auto shrink-0">
+                        {Array.from({ length: t.rating }).map((_, j) => <Star key={j} size={10} className="text-[#C4996A] fill-[#C4996A]" />)}
+                      </div>
                     </div>
-                    <div className="flex gap-0.5 ml-auto shrink-0">
-                      {Array.from({ length: t.rating }).map((_, j) => <Star key={j} size={10} className="text-[#C4996A] fill-[#C4996A]" />)}
-                    </div>
-                  </div>
-                </button>
-              ))}
+                  </button>
+                ))}
+              </div>
               <div className="flex gap-2 pt-2">
                 <button onClick={prev} className="flex-1 py-3 rounded-xl border border-white/15 text-white hover:bg-white/10 transition-colors flex items-center justify-center">
                   <ChevronLeft size={18} />

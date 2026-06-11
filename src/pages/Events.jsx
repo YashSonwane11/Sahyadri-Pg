@@ -29,7 +29,7 @@ const galleryImages = [
   { src: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=500&h=500&fit=crop&auto=format", alt: "Birthday" },
   { src: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=500&h=700&fit=crop&auto=format", alt: "Graduation" },
   { src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500&h=450&fit=crop&auto=format", alt: "Group gathering" },
-  { src: "https://images.unsplash.com/photo-1602644525607-2868abfa3411?w=500&h=380&fit=crop&auto=format", alt: "Festival" },
+  { src: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=500&h=380&fit=crop&auto=format", alt: "Festival" },
   { src: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500&h=550&fit=crop&auto=format", alt: "Event night" },
   { src: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=500&h=400&fit=crop&auto=format", alt: "Community" },
   { src: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=500&h=480&fit=crop&auto=format", alt: "Indoor event" },
@@ -38,7 +38,7 @@ const galleryImages = [
 ];
 
 const videoThumbs = [
-  { title: "Diwali Celebration 2023", duration: "3:24", thumb: "https://images.unsplash.com/photo-1602644525607-2868abfa3411?w=400&h=240&fit=crop&auto=format" },
+  { title: "Diwali Celebration 2023", duration: "3:24", thumb: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=400&h=240&fit=crop&auto=format" },
   { title: "Annual Farewell Night", duration: "5:12", thumb: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=400&h=240&fit=crop&auto=format" },
   { title: "Holi Colors at Sahyadri", duration: "2:48", thumb: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&h=240&fit=crop&auto=format" },
   { title: "Birthday Surprise Compilation", duration: "4:05", thumb: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400&h=240&fit=crop&auto=format" },

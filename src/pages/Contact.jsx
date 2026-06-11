@@ -150,7 +150,7 @@ export default function Contact() {
       <section id="map" className="py-12 bg-[#FAF7F4]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
-            <div className="relative rounded-3xl overflow-hidden shadow-lg border border-[#7B1113]/8 h-[400px] sm:h-[480px]">
+            <div className="relative rounded-3xl overflow-hidden shadow-xl border-2 border-[#7B1113]/20 h-[350px] sm:h-[480px] isolate">
               <iframe
                 title="Sahyadri PG Location — MIT ADT University, Loni Kalbhor"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.999!2d73.9383!3d18.4777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2eaed9a1c0001%3A0x0!2sMIT%20ADT%20University%2C%20Loni%20Kalbhor!5e0!3m2!1sen!2sin!4v1"
@@ -160,7 +160,7 @@ export default function Contact() {
                 loading="lazy"
               />
               {/* Overlay card */}
-              <div className="absolute top-6 left-6 bg-white/95 backdrop-blur-md rounded-2xl p-5 shadow-xl max-w-[280px] sm:max-w-xs border border-[#7B1113]/5">
+              <div className="absolute top-4 left-4 right-4 sm:top-6 sm:left-6 sm:right-auto bg-white/95 backdrop-blur-md rounded-2xl p-4 sm:p-5 shadow-xl sm:max-w-xs border border-[#7B1113]/5">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
