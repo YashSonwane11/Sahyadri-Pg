@@ -7,6 +7,9 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Amenities from './pages/Amenities';
 import Rooms from './pages/Rooms';
+import Mess from './pages/Mess';
+import Events from './pages/Events';
+import Contact from './pages/Contact';
 
 // A premium temporary page component for routes that are yet to be built
 const ComingSoonPage = ({ pageName, desc }) => (
@@ -46,9 +49,9 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/amenities" element={<Amenities />} />
           <Route path="/rooms" element={<Rooms />} />
-          <Route path="/mess" element={<ComingSoonPage pageName="Mess Package & Menu" desc="Take a look at our daily meal plans (Breakfast, Lunch, Dinner), nutritional highlights, and weekly restaurant-style menu." />} />
-          <Route path="/events" element={<ComingSoonPage pageName="Event Celebration" desc="Instagram-style masonry grid showcasing birthday celebrations, festival gatherings, and student farewells." />} />
-          <Route path="/contact" element={<ComingSoonPage pageName="Contact Us" desc="Direct phone numbers, embedded Google Maps direction coordinates, and instant contact options." />} />
+          <Route path="/mess" element={<Mess />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/feedback" element={<ComingSoonPage pageName="Student Feedback" desc="Review board where students can read ratings, write reviews, and submit ratings directly." />} />
           <Route path="*" element={<ComingSoonPage pageName="404 Page Not Found" desc="Oops! The page you are looking for does not exist. Please navigate back to the home page." />} />
         </Routes>
