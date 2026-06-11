@@ -147,10 +147,11 @@ export default function Contact() {
       </section>
 
       {/* ─── Map (containerized) ─── */}
-      <section id="map" className="py-12 bg-[#FAF7F4]">
+      <section id="map" className="py-16 bg-[#FAF7F4]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeUp>
-            <div className="relative rounded-3xl overflow-hidden shadow-xl border-2 border-[#7B1113]/20 h-[350px] sm:h-[480px] isolate">
+          <FadeUp className="relative rounded-3xl p-1 bg-gradient-to-r from-[#7B1113] to-[#C4996A] h-[350px] sm:h-[480px]">
+            {/* Map Inner Container */}
+            <div className="relative rounded-[20px] overflow-hidden h-full w-full isolate bg-white">
               <iframe
                 title="Sahyadri PG Location — MIT ADT University, Loni Kalbhor"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.999!2d73.9383!3d18.4777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2eaed9a1c0001%3A0x0!2sMIT%20ADT%20University%2C%20Loni%20Kalbhor!5e0!3m2!1sen!2sin!4v1"

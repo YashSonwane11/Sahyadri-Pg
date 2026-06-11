@@ -8,9 +8,9 @@ export default function Footer() {
   return (
     <footer className="bg-premium-black text-[#f5efeb]/80 border-t border-[#f5efeb]/10 pt-10 md:pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-8 mb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-8 mb-12">
           {/* Column 1: Brand details */}
-          <div className="flex flex-col gap-4 md:gap-6">
+          <div className="flex flex-col gap-4 md:gap-6 col-span-2 lg:col-span-1">
             <div className="text-white">
               <Logo className="h-10" variant="white" />
             </div>
@@ -49,7 +49,7 @@ export default function Footer() {
           </div>
 
           {/* Column 2: Quick Navigation links */}
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5 col-span-1">
             <h3 className="text-white font-sans text-base font-bold tracking-wider uppercase">Sitemap</h3>
             <ul className="grid grid-cols-1 gap-3 text-sm">
               {navLinks.map((link) => (
@@ -63,7 +63,7 @@ export default function Footer() {
           </div>
 
           {/* Column 3: Properties/Rooms & Amenities */}
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5 col-span-1">
             <h3 className="text-white font-sans text-base font-bold tracking-wider uppercase">Accommodations</h3>
             <ul className="flex flex-col gap-3 text-sm text-[#f5efeb]/70">
               <li>
@@ -95,7 +95,7 @@ export default function Footer() {
           </div>
 
           {/* Column 4: Contact details */}
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5 col-span-2 lg:col-span-1">
             <h3 className="text-white font-sans text-base font-bold tracking-wider uppercase">Contact Us</h3>
             <ul className="flex flex-col gap-4 text-sm text-[#f5efeb]/70">
               <li className="flex items-start gap-3">
