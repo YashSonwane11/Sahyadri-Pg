@@ -20,7 +20,7 @@ function FadeUp({ children, delay = 0, className = "" }) {
 
 const eventCategories = [
   { title: "Birthday Celebrations", emoji: "🎂", count: "48+ Events", desc: "Every student's birthday is celebrated with surprise cakes, decorations, and group festivities.", image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=500&h=380&fit=crop&auto=format" },
-  { title: "Festival Celebrations", emoji: "🪔", count: "12+ Festivals", desc: "Diwali, Holi, Navratri, Christmas — all major festivals celebrated together as one big family.", image: "https://images.unsplash.com/photo-1602644525607-2868abfa3411?w=500&h=380&fit=crop&auto=format" },
+  { title: "Festival Celebrations", emoji: "🪔", count: "12+ Festivals", desc: "Diwali, Holi, Navratri, Christmas — all major festivals celebrated together as one big family.", image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=500&h=380&fit=crop&auto=format" },
   { title: "Farewell Events", emoji: "🎓", count: "Annual", desc: "Heartfelt farewell ceremonies for graduating students with memories, gifts, and celebrations.", image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=500&h=380&fit=crop&auto=format" },
   { title: "Student Gatherings", emoji: "🤝", count: "Monthly", desc: "Movie nights, game evenings, cricket tournaments, and cultural nights to build community bonds.", image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500&h=380&fit=crop&auto=format" },
 ];
