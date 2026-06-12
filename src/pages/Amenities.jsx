@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import { Wifi, Shield, UtensilsCrossed, Refrigerator, WashingMachine, Droplets, Car, Flame, Sparkles, Zap, Bath, Lock } from "lucide-react";
 
+import balcony from "../assets/balcony.png";
+
 function FadeIn({ children, delay = 0, className = "" }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -42,7 +44,7 @@ export default function Amenities() {
       <section className="relative h-72 flex items-end overflow-hidden">
         <motion.div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1600&h=500&fit=crop&auto=format')" }}
+          style={{ backgroundImage: `url(${balcony})` }}
           initial={{ scale: 1.06 }}
           animate={{ scale: 1 }}
           transition={{ duration: 5, ease: "easeOut" }}

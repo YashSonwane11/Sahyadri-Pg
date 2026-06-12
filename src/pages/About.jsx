@@ -3,6 +3,12 @@ import { Link } from "react-router-dom";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Target, Eye, Heart, Users, Home, Trophy, ArrowRight } from "lucide-react";
 
+import roomDouble from "../assets/room-double.png";
+import roomTriple from "../assets/room-triple.jpg";
+import buildingNight from "../assets/building-night.jpg";
+import buildingDay from "../assets/building-day.jpg";
+import balcony from "../assets/balcony.png";
+
 function FadeIn({ children, delay = 0, className = "" }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -39,7 +45,7 @@ export default function About() {
         <motion.div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1600&h=600&fit=crop&auto=format')",
+            backgroundImage: `url(${buildingDay})`,
             y: parallaxY,
           }}
         />
@@ -60,18 +66,18 @@ export default function About() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-4">
                   <div className="rounded-3xl overflow-hidden h-64">
-                    <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=400&h=320&fit=crop&auto=format" alt="Room" className="w-full h-full object-cover" />
+                    <img src={roomDouble} alt="Room" className="w-full h-full object-cover" />
                   </div>
                   <div className="rounded-3xl overflow-hidden h-40">
-                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=200&fit=crop&auto=format" alt="Kitchen" className="w-full h-full object-cover" />
+                    <img src={balcony} alt="Kitchen" className="w-full h-full object-cover" />
                   </div>
                 </div>
                 <div className="pt-8 space-y-4">
                   <div className="rounded-3xl overflow-hidden h-40">
-                    <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400&h=200&fit=crop&auto=format" alt="Study" className="w-full h-full object-cover" />
+                    <img src={roomTriple} alt="Study" className="w-full h-full object-cover" />
                   </div>
                   <div className="rounded-3xl overflow-hidden h-64">
-                    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=320&fit=crop&auto=format" alt="Common area" className="w-full h-full object-cover" />
+                    <img src={buildingNight} alt="Common area" className="w-full h-full object-cover" />
                   </div>
                 </div>
               </div>
@@ -175,12 +181,12 @@ export default function About() {
           </FadeIn>
           <div className="columns-2 lg:columns-3 gap-4 space-y-4">
             {[
-              "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=400&h=300&fit=crop&auto=format",
-              "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=400&h=500&fit=crop&auto=format",
-              "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400&h=280&fit=crop&auto=format",
-              "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=400&fit=crop&auto=format",
-              "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop&auto=format",
-              "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=500&fit=crop&auto=format",
+              roomDouble,
+              roomTriple,
+              balcony,
+              buildingDay,
+              buildingNight,
+              balcony,
             ].map((src, i) => (
               <FadeIn key={i} delay={i * 0.05}>
                 <div className="break-inside-avoid rounded-2xl overflow-hidden group cursor-pointer">

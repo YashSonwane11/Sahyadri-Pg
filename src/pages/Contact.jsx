@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Phone, MapPin, MessageCircle, Clock, Send, ArrowRight, Loader2 } from "lucide-react";
 
+import buildingDay from "../assets/building-day.jpg";
+
 // Google Sheets integration configuration:
 // 1. Create a Google Sheet and open Extensions -> Apps Script.
 // 2. Paste the Google Apps Script code (available in implementation_plan.md).
@@ -102,7 +104,7 @@ export default function Contact() {
       <section className="relative h-72 flex items-end overflow-hidden">
         <motion.div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1600&h=500&fit=crop&auto=format')" }}
+          style={{ backgroundImage: `url(${buildingDay})` }}
           initial={{ scale: 1.06 }}
           animate={{ scale: 1 }}
           transition={{ duration: 5, ease: "easeOut" }}

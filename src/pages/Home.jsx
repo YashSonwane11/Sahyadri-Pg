@@ -6,6 +6,12 @@ import {
   Star, ChevronLeft, ChevronRight, Phone, MessageCircle, ArrowRight, Check, Play
 } from "lucide-react";
 
+import roomDouble from "../assets/room-double.png";
+import roomTriple from "../assets/room-triple.jpg";
+import buildingNight from "../assets/building-night.jpg";
+import buildingDay from "../assets/building-day.jpg";
+import balcony from "../assets/balcony.png";
+
 /* ── animated counter ── */
 function AnimatedCounter({ target, suffix = "" }) {
   const [val, setVal] = useState(0);
@@ -45,14 +51,14 @@ const rooms = [
   {
     type: "Double Sharing",
     price: "₹7,500",
-    image: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=700&h=480&fit=crop&auto=format",
+    image: roomDouble,
     features: ["Attached Bathroom", "AC Available", "Study Table", "Wardrobe"],
     badge: "Most Popular", badgeColor: "#7B1113",
   },
   {
     type: "Triple Sharing",
     price: "₹5,500",
-    image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=700&h=480&fit=crop&auto=format",
+    image: roomTriple,
     features: ["Shared Bathroom", "Study Table", "Wardrobe", "Power Backup"],
     badge: "Best Value", badgeColor: "#C4996A",
   },
@@ -137,7 +143,7 @@ export function HomePage() {
         {/* Background image with Ken Burns */}
         <motion.div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=1920&h=1080&fit=crop&auto=format')" }}
+          style={{ backgroundImage: `url(${buildingNight})` }}
           initial={{ scale: 1.08 }}
           animate={{ scale: 1 }}
           transition={{ duration: 8, ease: "easeOut" }}
@@ -530,7 +536,7 @@ export function HomePage() {
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-[#DCCFC0]" />
         <div className="absolute inset-0 opacity-20"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1600&h=400&fit=crop&auto=format')", backgroundSize: "cover", backgroundPosition: "center" }}
+          style={{ backgroundImage: `url(${buildingDay})`, backgroundSize: "cover", backgroundPosition: "center" }}
         />
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <FadeUp>

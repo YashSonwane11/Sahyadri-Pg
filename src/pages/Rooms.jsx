@@ -3,6 +3,12 @@ import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import { Check, X, Phone, MessageCircle, ChevronLeft, ChevronRight, Zap } from "lucide-react";
 
+import roomDouble from "../assets/room-double.png";
+import roomTriple from "../assets/room-triple.jpg";
+import buildingNight from "../assets/building-night.jpg";
+import buildingDay from "../assets/building-day.jpg";
+import balcony from "../assets/balcony.png";
+
 function FadeUp({ children, delay = 0, className = "" }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -30,9 +36,9 @@ const roomData = {
     badge: "Most Popular",
     desc: "Thoughtfully designed with two private study zones, individual wardrobes, and premium fittings. Perfect for students who value personal space without compromise.",
     images: [
-      "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800&h=520&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800&h=520&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&h=520&fit=crop&auto=format",
+      roomDouble,
+      balcony,
+      buildingDay,
     ],
     features: ["Attached Private Bathroom", "Two Study Desks & Chairs", "Individual Wardrobes", "AC Available (optional)", "High-Speed WiFi", "Power Backup", "Daily Room Cleaning", "24/7 Hot Water"],
   },
@@ -46,9 +52,9 @@ const roomData = {
     badge: "Best Value",
     desc: "Spacious triple rooms with three individual sleeping zones. Great for students on a budget who still want premium amenities and a vibrant community experience.",
     images: [
-      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&h=520&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800&h=520&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800&h=520&fit=crop&auto=format",
+      roomTriple,
+      balcony,
+      buildingNight,
     ],
     features: ["Shared Bathroom (1:3)", "Three Study Desks & Chairs", "Individual Wardrobes", "Fans & Lighting", "High-Speed WiFi", "Power Backup", "Daily Room Cleaning", "24/7 Hot Water"],
   },
@@ -85,7 +91,7 @@ export default function Rooms() {
       <section className="relative h-72 flex items-end overflow-hidden">
         <motion.div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=1600&h=500&fit=crop&auto=format')" }}
+          style={{ backgroundImage: `url(${balcony})` }}
           initial={{ scale: 1.06 }}
           animate={{ scale: 1 }}
           transition={{ duration: 5, ease: "easeOut" }}

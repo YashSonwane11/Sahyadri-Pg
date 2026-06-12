@@ -13,6 +13,12 @@ import {
 } from 'react-icons/fa';
 import { MdOutlineCleanHands, MdHealthAndSafety } from 'react-icons/md';
 
+import roomDouble from "../assets/room-double.png";
+import roomTriple from "../assets/room-triple.jpg";
+import buildingNight from "../assets/building-night.jpg";
+import buildingDay from "../assets/building-day.jpg";
+import balcony from "../assets/balcony.png";
+
 export const navLinks = [
   { name: 'Home', path: '/' },
   { name: 'About Us', path: '/about' },
@@ -127,9 +133,9 @@ export const rooms = [
     ],
     // High-quality Airbnb style room images
     images: [
-      'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80'
+      roomDouble,
+      balcony,
+      buildingDay,
     ]
   },
   {
@@ -146,9 +152,9 @@ export const rooms = [
       'RO drinking water station outside the door'
     ],
     images: [
-      'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=800&q=80'
+      roomTriple,
+      balcony,
+      buildingNight,
     ]
   }
 ];

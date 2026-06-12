@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Star, ThumbsUp, Quote } from "lucide-react";
 
+import balcony from "../assets/balcony.png";
+
 function FadeUp({ children, delay = 0, className = "" }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -84,7 +86,7 @@ export default function Feedback() {
       <section className="relative h-64 flex items-end overflow-hidden">
         <motion.div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&h=400&fit=crop&auto=format')" }}
+          style={{ backgroundImage: `url(${balcony})` }}
           initial={{ scale: 1.06 }}
           animate={{ scale: 1 }}
           transition={{ duration: 5, ease: "easeOut" }}
