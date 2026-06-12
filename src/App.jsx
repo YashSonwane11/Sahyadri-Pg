@@ -11,6 +11,7 @@ import Rooms from './pages/Rooms';
 import Mess from './pages/Mess';
 import Events from './pages/Events';
 import Contact from './pages/Contact';
+import Feedback from './pages/Feedback';
 
 // A premium temporary page component for routes that are yet to be built
 const ComingSoonPage = ({ pageName, desc }) => (
@@ -55,7 +56,7 @@ function App() {
           <Route path="/mess" element={<Mess />} />
           <Route path="/events" element={<Events />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/feedback" element={<ComingSoonPage pageName="Student Feedback" desc="Review board where students can read ratings, write reviews, and submit ratings directly." />} />
+          <Route path="/feedback" element={<Feedback />} />
           <Route path="*" element={<ComingSoonPage pageName="404 Page Not Found" desc="Oops! The page you are looking for does not exist. Please navigate back to the home page." />} />
         </Routes>
       </main>
