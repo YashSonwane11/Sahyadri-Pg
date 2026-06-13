@@ -139,7 +139,7 @@ export function HomePage() {
     <div className="bg-[#FAF7F4]">
 
       {/* ═══ HERO ═══ */}
-      <section className="relative min-h-screen lg:h-screen flex items-center pt-20 lg:pt-24 overflow-hidden">
+      <section className="relative min-h-screen lg:h-screen flex flex-col overflow-hidden">
         {/* Background image with Ken Burns */}
         <motion.div
           className="absolute inset-0 bg-cover bg-center"
@@ -155,8 +155,11 @@ export function HomePage() {
         {/* Extra top fade so navbar text stays readable */}
         <div className="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-[#1A0A0B]/50 to-transparent" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-10 pb-16 lg:py-0 z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 xl:gap-12 items-center">
+        {/* Spacer to push content below the fixed navbar */}
+        <div className="h-20 lg:h-24 shrink-0" />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-6 pb-16 lg:pt-10 lg:pb-12 z-10 flex-grow flex items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 xl:gap-12 items-center w-full">
             
             {/* Left Column: Hero Content */}
             <div className="lg:col-span-7 xl:col-span-8">
