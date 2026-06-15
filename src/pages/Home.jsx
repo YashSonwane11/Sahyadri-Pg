@@ -187,7 +187,7 @@ export function HomePage() {
                 className="text-white/75 mb-8 max-w-md"
                 style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", lineHeight: 1.7 }}
               >
-                Safe, comfortable & affordable PG with world-class amenities at affordable prices. Designed for academic excellence and high-quality student living.
+                Safe, comfortable & affordable PG with premium amenities at affordable prices. Designed for academic excellence and high-quality student living.
               </motion.p>
 
               <motion.div
