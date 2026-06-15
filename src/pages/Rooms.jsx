@@ -30,8 +30,21 @@ function FadeUp({ children, delay = 0, className = "" }) {
 }
 
 const roomData = {
+  single: {
+    label: "1 Sharing Room",
+    availability: "2 Available",
+    notice: "30 Days",
+    badge: "Premium Privacy",
+    desc: "Designed for students who prioritize personal focus and maximum privacy. Features a single comfortable bed, dedicated study setup, individual storage space, and an attached balcony.",
+    images: [
+      { src: roomSingle, alt: "Premium 1 Sharing Room Setup" },
+      { src: balcony, alt: "Private Attached Balcony" },
+      { src: bathroom, alt: "Clean Modern Attached Washroom" },
+    ],
+    features: ["Attached Washroom", "Dedicated Study Desk & Chair", "Individual Wardrobe", "Ventilated Balcony", "AC Available (optional)", "High-Speed WiFi", "Daily Room Cleaning", "24/7 Hot Water"],
+  },
   double: {
-    label: "Double Sharing",
+    label: "2 Sharing Room",
     availability: "3 Available",
     notice: "30 Days",
     badge: "Most Popular",
@@ -46,7 +59,7 @@ const roomData = {
     features: ["Attached Private Bathroom", "Two Study Desks & Chairs", "Individual Wardrobes", "AC Available (optional)", "High-Speed WiFi", "Power Backup", "Daily Room Cleaning", "24/7 Hot Water"],
   },
   triple: {
-    label: "Triple Sharing",
+    label: "3 Sharing Room",
     availability: "7 Available",
     notice: "30 Days",
     badge: "Best Value",
@@ -59,18 +72,31 @@ const roomData = {
     ],
     features: ["Shared Bathroom (1:3)", "Three Study Desks & Chairs", "Individual Wardrobes", "Fans & Lighting", "High-Speed WiFi", "Power Backup", "Daily Room Cleaning", "24/7 Hot Water"],
   },
+  quad: {
+    label: "4 Sharing Room",
+    availability: "4 Available",
+    notice: "30 Days",
+    badge: "Budget Friendly",
+    desc: "Cozy and pocket-friendly sharing rooms with dedicated wardrobes and study spaces. Ideal for students who love companionship and collaborative learning.",
+    images: [
+      { src: roomDoubleSec, alt: "Budget Quad Sharing Room Layout" },
+      { src: balcony, alt: "Attached Balcony with Ventilation" },
+      { src: bathroom, alt: "Clean Shared Washroom" },
+    ],
+    features: ["Shared Bathroom (1:4)", "Four Study Desks & Chairs", "Individual Wardrobes", "Fans & Lighting", "High-Speed WiFi", "Power Backup", "Daily Room Cleaning", "24/7 Hot Water"],
+  },
 };
 
 const comparisonFeatures = [
-  { feature: "Room Size", double: "~250 sq ft", triple: "~320 sq ft" },
-  { feature: "Occupancy", double: "2 Students", triple: "3 Students" },
-  { feature: "Bathroom", double: "Attached Private", triple: "Shared (1:3)" },
-  { feature: "Study Desk", double: true, triple: true },
-  { feature: "Individual Wardrobe", double: true, triple: true },
-  { feature: "Air Conditioning", double: "Optional", triple: false },
-  { feature: "WiFi Included", double: true, triple: true },
-  { feature: "Power Backup", double: true, triple: true },
-  { feature: "CCTV Coverage", double: true, triple: true },
+  { feature: "Room Size", single: "~150 sq ft", double: "~250 sq ft", triple: "~320 sq ft", quad: "~380 sq ft" },
+  { feature: "Occupancy", single: "1 Student", double: "2 Students", triple: "3 Students", quad: "4 Students" },
+  { feature: "Bathroom", single: "Attached Private", double: "Attached Private", triple: "Shared (1:3)", quad: "Shared (1:4)" },
+  { feature: "Study Desk", single: true, double: true, triple: true, quad: true },
+  { feature: "Individual Wardrobe", single: true, double: true, triple: true, quad: true },
+  { feature: "Air Conditioning", single: "Optional", double: "Optional", triple: false, quad: false },
+  { feature: "WiFi Included", single: true, double: true, triple: true, quad: true },
+  { feature: "Power Backup", single: true, double: true, triple: true, quad: true },
+  { feature: "CCTV Coverage", single: true, double: true, triple: true, quad: true },
 ];
 
 export default function Rooms() {
@@ -99,7 +125,7 @@ export default function Rooms() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-10">
           <p className="text-[#DCCFC0]/60 text-xs uppercase tracking-widest mb-2" style={{ fontFamily: "Inter, sans-serif", fontWeight: 600 }}>Accommodation</p>
           <h1 className="text-white" style={{ fontFamily: "Playfair Display, serif", fontWeight: 800, fontSize: "clamp(34px, 5vw, 66px)" }}>
-            Rooms & Pricing
+            Rooms & Accommodations
           </h1>
         </div>
       </section>
@@ -110,8 +136,8 @@ export default function Rooms() {
 
           {/* Tabs */}
           <FadeUp className="mb-12">
-            <div className="flex gap-2 bg-white border border-[#7B1113]/10 p-1.5 rounded-2xl w-fit shadow-sm">
-              {["double", "triple"].map((tab) => (
+            <div className="flex flex-wrap gap-2 bg-white border border-[#7B1113]/10 p-1.5 rounded-2xl w-fit shadow-sm">
+              {["single", "double", "triple", "quad"].map((tab) => (
                 <button
                   key={tab}
                   onClick={() => switchTab(tab)}
@@ -244,31 +270,30 @@ export default function Rooms() {
           </FadeUp>
 
           <FadeUp delay={0.1}>
-            <div className="rounded-3xl overflow-hidden border border-white/8">
-              <div className="grid grid-cols-3 bg-[#7B1113] px-6 py-5">
-                <div className="text-[#DCCFC0]/70 text-sm font-medium" style={{ fontFamily: "Inter, sans-serif" }}>Feature</div>
-                <div className="text-white text-sm font-semibold text-center" style={{ fontFamily: "Inter, sans-serif" }}>Double Sharing</div>
-                <div className="text-white text-sm font-semibold text-center" style={{ fontFamily: "Inter, sans-serif" }}>Triple Sharing</div>
-              </div>
-              {comparisonFeatures.map((row, i) => (
-                <div key={row.feature} className={`grid grid-cols-3 px-6 py-4 border-b border-white/5 ${i % 2 === 0 ? "bg-white/3" : "bg-transparent"}`}>
-                  <div className="text-[#DCCFC0]/60 text-sm" style={{ fontFamily: "Inter, sans-serif" }}>{row.feature}</div>
-                  <div className="text-center">
-                    {typeof row.double === "boolean" ? (
-                      row.double
-                        ? <div className="w-5 h-5 bg-green-500/20 rounded-full flex items-center justify-center mx-auto"><Check size={12} className="text-green-400" /></div>
-                        : <div className="w-5 h-5 bg-red-500/20 rounded-full flex items-center justify-center mx-auto"><X size={12} className="text-red-400" /></div>
-                    ) : <span className="text-white text-sm" style={{ fontFamily: "Inter, sans-serif" }}>{row.double}</span>}
-                  </div>
-                  <div className="text-center">
-                    {typeof row.triple === "boolean" ? (
-                      row.triple
-                        ? <div className="w-5 h-5 bg-green-500/20 rounded-full flex items-center justify-center mx-auto"><Check size={12} className="text-green-400" /></div>
-                        : <div className="w-5 h-5 bg-red-500/20 rounded-full flex items-center justify-center mx-auto"><X size={12} className="text-red-400" /></div>
-                    ) : <span className="text-white text-sm" style={{ fontFamily: "Inter, sans-serif" }}>{row.triple}</span>}
-                  </div>
+            <div className="overflow-x-auto rounded-3xl border border-white/8 shadow-2xl">
+              <div className="min-w-[800px]">
+                <div className="grid grid-cols-5 bg-[#7B1113] px-6 py-5">
+                  <div className="text-[#DCCFC0]/70 text-sm font-medium" style={{ fontFamily: "Inter, sans-serif" }}>Feature</div>
+                  <div className="text-white text-sm font-semibold text-center" style={{ fontFamily: "Inter, sans-serif" }}>1 Sharing</div>
+                  <div className="text-white text-sm font-semibold text-center" style={{ fontFamily: "Inter, sans-serif" }}>2 Sharing</div>
+                  <div className="text-white text-sm font-semibold text-center" style={{ fontFamily: "Inter, sans-serif" }}>3 Sharing</div>
+                  <div className="text-white text-sm font-semibold text-center" style={{ fontFamily: "Inter, sans-serif" }}>4 Sharing</div>
                 </div>
-              ))}
+                {comparisonFeatures.map((row, i) => (
+                  <div key={row.feature} className={`grid grid-cols-5 px-6 py-4 border-b border-white/5 ${i % 2 === 0 ? "bg-white/3" : "bg-transparent"}`}>
+                    <div className="text-[#DCCFC0]/60 text-sm" style={{ fontFamily: "Inter, sans-serif" }}>{row.feature}</div>
+                    {["single", "double", "triple", "quad"].map((type) => (
+                      <div key={type} className="text-center flex items-center justify-center">
+                        {typeof row[type] === "boolean" ? (
+                          row[type]
+                            ? <div className="w-5 h-5 bg-green-500/20 rounded-full flex items-center justify-center"><Check size={12} className="text-green-400" /></div>
+                            : <div className="w-5 h-5 bg-red-500/20 rounded-full flex items-center justify-center"><X size={12} className="text-red-400" /></div>
+                        ) : <span className="text-white text-sm" style={{ fontFamily: "Inter, sans-serif" }}>{row[type]}</span>}
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
             </div>
           </FadeUp>
 

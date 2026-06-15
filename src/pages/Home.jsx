@@ -64,10 +64,10 @@ const rooms = [
 ];
 
 const testimonials = [
-  { name: "Priya Sharma", college: "B.Tech CSE — MIT ADT", rating: 5, review: "Sahyadri PG is the best decision I made in college. The food is amazing, security is top-notch, and the staff feels like family. Highly recommended!", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&auto=format" },
-  { name: "Rahul Deshmukh", college: "MBA — MIT ADT", rating: 5, review: "Clean rooms, great food, excellent WiFi. Everything a student needs. The location is perfect — just 5 minutes from campus.", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&auto=format" },
-  { name: "Sneha Patil", college: "B.Pharm — MIT ADT", rating: 5, review: "I've stayed here 2 years with zero complaints. The warden is incredibly supportive and the premises always feel safe and welcoming.", avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&auto=format" },
-  { name: "Arjun Kulkarni", college: "M.Tech — MIT ADT", rating: 4, review: "Exceptional value for money. Best amenities at a very reasonable price. Power backup is a lifesaver during load-shedding months.", avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&auto=format" },
+  { name: "Priya Sharma", college: "B.Tech CSE — MIT ADT", rating: 5, review: "Sahyadri PG is the best decision I made in college. The food is amazing, security is top-notch, and the staff feels like family. Highly recommended!", initials: "PS", color: "linear-gradient(135deg, #7B1113, #a21a1d)" },
+  { name: "Rahul Deshmukh", college: "MBA — MIT ADT", rating: 5, review: "Clean rooms, great food, excellent WiFi. Everything a student needs. The location is perfect — just 5 minutes from campus.", initials: "RD", color: "linear-gradient(135deg, #C4996A, #dfb485)" },
+  { name: "Sneha Patil", college: "B.Pharm — MIT ADT", rating: 5, review: "I've stayed here 2 years with zero complaints. The warden is incredibly supportive and the premises always feel safe and welcoming.", initials: "SP", color: "linear-gradient(135deg, #2A4858, #406f87)" },
+  { name: "Arjun Kulkarni", college: "M.Tech — MIT ADT", rating: 4, review: "Exceptional value for money. Best amenities at a very reasonable price. Power backup is a lifesaver during load-shedding months.", initials: "AK", color: "linear-gradient(135deg, #4A3E3D, #705f5d)" },
 ];
 
 /* ── fade-up wrapper ── */
@@ -187,7 +187,7 @@ export function HomePage() {
                 className="text-white/75 mb-8 max-w-md"
                 style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", lineHeight: 1.7 }}
               >
-                Safe, comfortable & affordable PG designed for academic excellence. Boys & Girls PG with world-class amenities.
+                Safe, comfortable & affordable PG with world-class amenities at affordable prices. Designed for academic excellence and high-quality student living.
               </motion.p>
 
               <motion.div
@@ -527,7 +527,12 @@ export function HomePage() {
                   </p>
                 </div>
                 <div className="flex items-center gap-4">
-                  <img src={testimonials[slide].avatar} alt={testimonials[slide].name} className="w-13 h-13 rounded-full object-cover ring-2 ring-white/30" style={{ width: 52, height: 52 }} />
+                  <div
+                    className="w-13 h-13 rounded-full flex items-center justify-center text-white font-bold text-base ring-2 ring-white/30 shrink-0"
+                    style={{ background: testimonials[slide].color, width: 52, height: 52, fontFamily: "Inter, sans-serif" }}
+                  >
+                    {testimonials[slide].initials}
+                  </div>
                   <div>
                     <div className="text-white font-semibold" style={{ fontFamily: "Inter, sans-serif" }}>{testimonials[slide].name}</div>
                     <div className="text-[#DCCFC0]/70 text-sm" style={{ fontFamily: "Inter, sans-serif" }}>{testimonials[slide].college}</div>
@@ -546,7 +551,12 @@ export function HomePage() {
                     className={`w-full text-left rounded-2xl p-5 border transition-all duration-300 ${i === slide ? "bg-white/10 border-[#7B1113]" : "bg-white/4 border-white/8 hover:bg-white/8"}`}
                   >
                     <div className="flex items-center gap-3">
-                      <img src={t.avatar} alt={t.name} className="w-10 h-10 rounded-full object-cover shrink-0" />
+                      <div
+                        className="w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold text-xs ring-1 ring-white/10 shrink-0"
+                        style={{ background: t.color, fontFamily: "Inter, sans-serif" }}
+                      >
+                        {t.initials}
+                      </div>
                       <div className="min-w-0">
                         <div className="text-white text-sm font-medium truncate" style={{ fontFamily: "Inter, sans-serif" }}>{t.name}</div>
                         <div className="text-white/40 text-xs truncate" style={{ fontFamily: "Inter, sans-serif" }}>{t.college}</div>

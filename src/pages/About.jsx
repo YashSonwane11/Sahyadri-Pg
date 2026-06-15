@@ -8,6 +8,7 @@ import roomTriple from "../assets/3shr_room.jpeg";
 import buildingNight from "../assets/building-night.jpg";
 import buildingDay from "../assets/building-day.jpg";
 import balcony from "../assets/balcony.png";
+import bathroom from "../assets/bathroom.jpeg";
 
 function FadeIn({ children, delay = 0, className = "" }) {
   const ref = useRef(null);
@@ -179,18 +180,19 @@ export default function About() {
           <FadeIn className="text-center mb-12">
             <h2 className="text-[#1A0A0B]" style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: "clamp(26px, 4vw, 42px)" }}>Glimpses of Sahyadri</h2>
           </FadeIn>
-          <div className="columns-2 lg:columns-3 gap-4 space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               roomDouble,
               roomTriple,
               balcony,
               buildingDay,
               buildingNight,
-              balcony,
+              bathroom,
             ].map((src, i) => (
-              <FadeIn key={i} delay={i * 0.05}>
-                <div className="break-inside-avoid rounded-2xl overflow-hidden group cursor-pointer">
-                  <img src={src} alt={`Gallery ${i + 1}`} className="w-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <FadeIn key={i} delay={i * 0.05} className="overflow-hidden rounded-3xl aspect-[4/3] shadow-lg border border-[#7B1113]/5">
+                <div className="w-full h-full group cursor-pointer overflow-hidden relative">
+                  <img src={src} alt={`Gallery ${i + 1}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
                 </div>
               </FadeIn>
             ))}

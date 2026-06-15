@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaInstagram, FaFacebookF, FaWhatsapp } from 'react-icons/fa';
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { navLinks, contactInfo } from '../data/pgData';
 import { Logo } from './Navbar';
 
@@ -28,22 +28,13 @@ export default function Footer() {
                 <FaWhatsapp size={18} />
               </a>
               <a
-                href="https://instagram.com/sahyadri_pg"
+                href="https://www.instagram.com/_sahyadri__living__?igsh=bnl4dzZtMzM0M243"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow on Instagram"
                 className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-primary hover:text-white transition-colors"
               >
                 <FaInstagram size={18} />
-              </a>
-              <a
-                href="https://facebook.com/sahyadri_pg"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Follow on Facebook"
-                className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-[#1877F2] hover:text-white transition-colors"
-              >
-                <FaFacebookF size={16} />
               </a>
             </div>
           </div>
@@ -120,9 +111,11 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom copyright section */}
         <div className="border-t border-white/10 pt-8 mt-12 flex flex-col sm:flex-row items-center justify-between text-xs text-[#f5efeb]/40 gap-4">
-          <p>© 2026 Sahyadri PG. All Rights Reserved.</p>
+          <div className="flex flex-col gap-1 text-center sm:text-left">
+            <p>© 2026 Sahyadri PG. All Rights Reserved.</p>
+            <p className="text-[#f5efeb]/30 text-[11px]">Design and Developed by InnovateHive</p>
+          </div>
           <div className="flex gap-6">
             <a href="/privacy" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="/terms" className="hover:text-white transition-colors">Terms of Service</a>
