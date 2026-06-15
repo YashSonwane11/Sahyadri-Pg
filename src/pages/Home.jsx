@@ -12,6 +12,8 @@ import buildingNight from "../assets/building-night.jpg";
 import buildingDay from "../assets/building-day.jpg";
 import balcony from "../assets/balcony.png";
 import pgVideo from "../assets/pg_video.mp4";
+import brochureBoys from "../assets/brochure-boys.jpg";
+import brochureGirls from "../assets/brochure-girls.jpg";
 
 /* ── animated counter ── */
 function AnimatedCounter({ target, suffix = "" }) {
@@ -466,9 +468,26 @@ export function HomePage() {
                   Choose Your Perfect Room
                 </h2>
               </div>
-              <Link to="/rooms" className="flex items-center gap-2 text-[#7B1113] font-medium text-sm group" style={{ fontFamily: "Inter, sans-serif" }}>
-                View All <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
+              <div className="flex gap-3 w-full sm:w-auto">
+                <a
+                  href={brochureBoys}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 sm:flex-none text-center bg-[#7B1113] hover:bg-[#9b1416] text-white text-xs font-semibold px-5 py-3.5 rounded-xl transition-all shadow-sm active:scale-95"
+                  style={{ fontFamily: "Inter, sans-serif" }}
+                >
+                  Boys PG Brochure
+                </a>
+                <a
+                  href={brochureGirls}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 sm:flex-none text-center bg-white border-2 border-[#7B1113] text-[#7B1113] hover:bg-[#7B1113]/5 text-xs font-semibold px-5 py-3.5 rounded-xl transition-all shadow-sm active:scale-95"
+                  style={{ fontFamily: "Inter, sans-serif" }}
+                >
+                  Girls PG Brochure
+                </a>
+              </div>
             </div>
           </FadeUp>
 

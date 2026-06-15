@@ -114,7 +114,9 @@ export default function Footer() {
         <div className="border-t border-white/10 pt-8 mt-12 flex flex-col sm:flex-row items-center justify-between text-xs text-[#f5efeb]/40 gap-4">
           <div className="flex flex-col gap-1 text-center sm:text-left">
             <p>© 2026 Sahyadri PG. All Rights Reserved.</p>
-            <p className="text-[#f5efeb]/30 text-[11px]">Design and Developed by InnovateHive</p>
+            <p className="text-[#f5efeb]/30 text-[11px]">
+              Design and Developed by <a href="https://www.innovatehive.in" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors underline font-medium">InnovateHive</a>
+            </p>
           </div>
           <div className="flex gap-6">
             <a href="/privacy" className="hover:text-white transition-colors">Privacy Policy</a>
