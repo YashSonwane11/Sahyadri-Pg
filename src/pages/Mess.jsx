@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Leaf, Flame, Heart, Calendar, FileText, Image as ImageIcon, ZoomIn, Clock } from "lucide-react";
+import { Leaf, Flame, Heart, Calendar, FileText, Image as ImageIcon, ZoomIn, Clock, Search, Utensils } from "lucide-react";
+import { motion } from "framer-motion";
 import messMenuImg from "../assets/mess_menu.jpg";
 import messTermsImg from "../assets/mess_terms.jpg";
 
@@ -74,9 +75,78 @@ const nutrition = [
   { icon: Heart, title: "Balanced Meals", desc: "High protein options, fresh legumes, leafy vegetables, and dairy foods in weekly rotation." },
 ];
 
+const menuCatalog = {
+  breakfast: {
+    title: "Breakfast Specials",
+    items: [
+      "Pohe",
+      "Upma",
+      "Idli Sambar",
+      "Sabudana Khichadi",
+      "Sabudana Wada",
+      "Udid Wada + Sambar",
+      "Udid Wada Bhaji",
+      "Vada Pav",
+      "Bread Pattis",
+      "Maggie",
+      "Grilled Sandwich",
+      "Pasta",
+      "Aalu Paratha",
+      "Uttapam",
+      "Misal Pav"
+    ]
+  },
+  vegetables: {
+    title: "Fresh Vegetables",
+    sections: [
+      {
+        subtitle: "Leafy Vegetables",
+        items: ["Methi", "Shepu", "Palak"]
+      },
+      {
+        subtitle: "Sprouts",
+        items: [
+          "Chole",
+          "Moong",
+          "Masoor (Massor)",
+          "Chavli",
+          "Gavaran Chana",
+          "Rajma",
+          "Soyabean",
+          "Aalu Paratha"
+        ]
+      }
+    ]
+  },
+  mainDishes: {
+    title: "Main Course & Curries",
+    items: [
+      "Brinjal",
+      "Batata",
+      "Masala Bhendi",
+      "Gavar",
+      "Drum Stick",
+      "Cauliflower",
+      "Dodka",
+      "Bottle Gourd",
+      "Capsicum",
+      "Beans",
+      "Green Peas",
+      "Shev-Bhaji",
+      "Veg-Maratha",
+      "Paneer Masala",
+      "Daal Kanda",
+      "Bhaji-Amti",
+      "Amti",
+      "Kadi"
+    ]
+  }
+};
+
 export default function Mess() {
   const [activeTab, setActiveTab] = useState("menu");
   const [lightboxImage, setLightboxImage] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <div className="bg-[#FAF7F4] pt-20">
@@ -174,6 +244,15 @@ export default function Mess() {
               <Calendar size={16} /> Weekly Menu
             </button>
             <button
+              onClick={() => setActiveTab("catalog")}
+              className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${
+                activeTab === "catalog" ? "bg-[#7B1113] text-white shadow-md" : "text-[#7A6A5A] hover:text-[#7B1113]"
+              }`}
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
+              <Utensils size={16} /> Menu Catalog
+            </button>
+            <button
               onClick={() => setActiveTab("terms")}
               className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${
                 activeTab === "terms" ? "bg-[#7B1113] text-white shadow-md" : "text-[#7A6A5A] hover:text-[#7B1113]"
@@ -250,6 +329,218 @@ export default function Mess() {
                   ))}
                 </div>
               </div>
+            )}
+
+            {activeTab === "catalog" && (
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="space-y-10"
+              >
+                {/* Vintage Style Banner */}
+                <div className="bg-[#EDE5D8]/50 border border-[#7B1113]/10 rounded-3xl p-6 md:p-10 text-center relative overflow-hidden shadow-sm">
+                  <div className="absolute top-0 left-0 w-24 h-24 border-t-2 border-l-2 border-[#7B1113]/20 rounded-tl-3xl pointer-events-none" />
+                  <div className="absolute top-0 right-0 w-24 h-24 border-t-2 border-r-2 border-[#7B1113]/20 rounded-tr-3xl pointer-events-none" />
+                  <div className="absolute bottom-0 left-0 w-24 h-24 border-b-2 border-l-2 border-[#7B1113]/20 rounded-bl-3xl pointer-events-none" />
+                  <div className="absolute bottom-0 right-0 w-24 h-24 border-b-2 border-r-2 border-[#7B1113]/20 rounded-br-3xl pointer-events-none" />
+
+                  <div className="flex justify-center items-center gap-4 mb-3">
+                    <span className="text-3xl hidden sm:inline">👩‍🍳</span>
+                    <div className="border-y border-[#7B1113]/20 py-1.5 px-6">
+                      <h3 className="text-2xl md:text-3xl font-bold tracking-widest text-[#7B1113]" style={{ fontFamily: "Playfair Display, serif" }}>
+                        "AARADHYA KITCHEN"
+                      </h3>
+                      <p className="text-xs uppercase tracking-widest text-[#7A6A5A] font-bold mt-1" style={{ fontFamily: "Inter, sans-serif" }}>
+                        Weekly Menu Catalog
+                      </p>
+                    </div>
+                    <span className="text-3xl hidden sm:inline">👩‍🍳</span>
+                  </div>
+
+                  <p className="text-[#7A6A5A] text-sm md:text-base italic max-w-xl mx-auto mt-4 leading-relaxed font-medium" style={{ fontFamily: "Inter, sans-serif" }}>
+                    "We Change menu according to seasonal vegetable, We Serves a wide variety of fresh & hygienic dishes daily."
+                  </p>
+
+                  {/* Search Bar inside the banner */}
+                  <div className="mt-8 max-w-md mx-auto relative">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                      <Search size={18} className="text-[#7A6A5A]" />
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="Search for a dish (e.g., Paneer, Pohe, Chole)..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="w-full pl-11 pr-10 py-3.5 bg-white/95 focus:bg-white border border-[#7B1113]/25 focus:border-[#7B1113] rounded-2xl text-sm focus:outline-none focus:ring-4 focus:ring-[#7B1113]/5 text-[#1A0A0B] shadow-sm transition-all placeholder-[#7A6A5A]/50 font-medium"
+                      style={{ fontFamily: "Inter, sans-serif" }}
+                    />
+                    {searchQuery && (
+                      <button
+                        onClick={() => setSearchQuery("")}
+                        className="absolute inset-y-0 right-0 pr-4 flex items-center text-xs text-[#7B1113] hover:text-[#9b1416] font-semibold"
+                      >
+                        Clear
+                      </button>
+                    )}
+                  </div>
+                </div>
+
+                {/* Categories Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                  {/* Category 1: Breakfast */}
+                  <div className="bg-white rounded-3xl p-6 md:p-8 border border-[#7B1113]/8 shadow-md flex flex-col h-full hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-3 border-b border-[#7B1113]/10 pb-4 mb-5">
+                      <div className="w-10 h-10 rounded-2xl bg-[#C4996A]/10 text-[#C4996A] flex items-center justify-center font-bold text-xl">
+                        ☕
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-bold text-[#1A0A0B]" style={{ fontFamily: "Playfair Display, serif" }}>
+                          Breakfast Specials
+                        </h4>
+                        <p className="text-xs text-[#7A6A5A]" style={{ fontFamily: "Inter, sans-serif" }}>
+                          Tasty morning starters
+                        </p>
+                      </div>
+                    </div>
+
+                    <ul className="space-y-1.5 flex-grow">
+                      {menuCatalog.breakfast.items
+                        .filter(item => item.toLowerCase().includes(searchQuery.toLowerCase()))
+                        .map((item, idx) => (
+                          <motion.li
+                            key={item}
+                            layout
+                            initial={{ opacity: 0, x: -5 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            className="flex items-center gap-3 text-sm text-[#7A6A5A] py-1.5 px-3 rounded-xl hover:bg-[#FAF7F4] hover:text-[#7B1113] transition-all border border-transparent hover:border-[#7B1113]/5"
+                            style={{ fontFamily: "Inter, sans-serif" }}
+                          >
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#7B1113]/50 shrink-0" />
+                            <span className="font-medium">{item}</span>
+                          </motion.li>
+                        ))}
+                      {menuCatalog.breakfast.items.filter(item => item.toLowerCase().includes(searchQuery.toLowerCase())).length === 0 && (
+                        <p className="text-xs text-[#7A6A5A]/60 italic py-4 pl-3">No matching breakfast items.</p>
+                      )}
+                    </ul>
+                  </div>
+
+                  {/* Category 2: Vegetables & Sprouts */}
+                  <div className="bg-white rounded-3xl p-6 md:p-8 border border-[#7B1113]/8 shadow-md flex flex-col h-full hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-3 border-b border-[#7B1113]/10 pb-4 mb-5">
+                      <div className="w-10 h-10 rounded-2xl bg-emerald-600/10 text-emerald-600 flex items-center justify-center font-bold text-xl">
+                        🥗
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-bold text-[#1A0A0B]" style={{ fontFamily: "Playfair Display, serif" }}>
+                          Vegetables & Sprouts
+                        </h4>
+                        <p className="text-xs text-[#7A6A5A]" style={{ fontFamily: "Inter, sans-serif" }}>
+                          Nutritious & healthy choices
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="space-y-6 flex-grow">
+                      {menuCatalog.vegetables.sections.map((sec, secIdx) => {
+                        const filteredItems = sec.items.filter(item => item.toLowerCase().includes(searchQuery.toLowerCase()));
+                        if (filteredItems.length === 0 && searchQuery) return null;
+
+                        return (
+                          <div key={secIdx} className="space-y-2.5">
+                            <h5 className="text-[10px] font-bold uppercase tracking-wider text-[#7B1113] bg-[#7B1113]/5 py-1 px-2.5 rounded-md w-fit" style={{ fontFamily: "Inter, sans-serif" }}>
+                              {sec.subtitle}
+                            </h5>
+                            <ul className="space-y-1.5">
+                              {filteredItems.map((item, idx) => (
+                                <motion.li
+                                  key={item}
+                                  layout
+                                  initial={{ opacity: 0, x: -5 }}
+                                  animate={{ opacity: 1, x: 0 }}
+                                  className="flex items-center gap-3 text-sm text-[#7A6A5A] py-1.5 px-3 rounded-xl hover:bg-[#FAF7F4] hover:text-[#7B1113] transition-all border border-transparent hover:border-[#7B1113]/5"
+                                  style={{ fontFamily: "Inter, sans-serif" }}
+                                >
+                                  <span className="w-1.5 h-1.5 rounded-full bg-[#7B1113]/50 shrink-0" />
+                                  <span className="font-medium">{item}</span>
+                                </motion.li>
+                              ))}
+                            </ul>
+                          </div>
+                        );
+                      })}
+                      {menuCatalog.vegetables.sections.every(sec => sec.items.filter(item => item.toLowerCase().includes(searchQuery.toLowerCase())).length === 0) && (
+                        <p className="text-xs text-[#7A6A5A]/60 italic py-4 pl-3">No matching vegetable items.</p>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Category 3: Main Course / Veg Options */}
+                  <div className="bg-white rounded-3xl p-6 md:p-8 border border-[#7B1113]/8 shadow-md flex flex-col h-full hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-3 border-b border-[#7B1113]/10 pb-4 mb-5">
+                      <div className="w-10 h-10 rounded-2xl bg-rose-600/10 text-rose-600 flex items-center justify-center font-bold text-xl">
+                        🍛
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-bold text-[#1A0A0B]" style={{ fontFamily: "Playfair Display, serif" }}>
+                          Main Dishes & Curries
+                        </h4>
+                        <p className="text-xs text-[#7A6A5A]" style={{ fontFamily: "Inter, sans-serif" }}>
+                          Homestyle lunch & dinner curries
+                        </p>
+                      </div>
+                    </div>
+
+                    <ul className="space-y-1.5 flex-grow">
+                      {menuCatalog.mainDishes.items
+                        .filter(item => item.toLowerCase().includes(searchQuery.toLowerCase()))
+                        .map((item, idx) => (
+                          <motion.li
+                            key={item}
+                            layout
+                            initial={{ opacity: 0, x: -5 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            className="flex items-center gap-3 text-sm text-[#7A6A5A] py-1.5 px-3 rounded-xl hover:bg-[#FAF7F4] hover:text-[#7B1113] transition-all border border-transparent hover:border-[#7B1113]/5"
+                            style={{ fontFamily: "Inter, sans-serif" }}
+                          >
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#7B1113]/50 shrink-0" />
+                            <span className="font-medium">{item}</span>
+                          </motion.li>
+                        ))}
+                      {menuCatalog.mainDishes.items.filter(item => item.toLowerCase().includes(searchQuery.toLowerCase())).length === 0 && (
+                        <p className="text-xs text-[#7A6A5A]/60 italic py-4 pl-3">No matching curry items.</p>
+                      )}
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Overall No Results State */}
+                {menuCatalog.breakfast.items.filter(item => item.toLowerCase().includes(searchQuery.toLowerCase())).length === 0 &&
+                 menuCatalog.vegetables.sections.every(sec => sec.items.filter(item => item.toLowerCase().includes(searchQuery.toLowerCase())).length === 0) &&
+                 menuCatalog.mainDishes.items.filter(item => item.toLowerCase().includes(searchQuery.toLowerCase())).length === 0 && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="bg-white border border-[#7B1113]/8 rounded-3xl p-10 text-center shadow-md max-w-md mx-auto"
+                  >
+                    <p className="text-3xl mb-4">🔍</p>
+                    <h4 className="text-[#1A0A0B] text-lg font-bold mb-2" style={{ fontFamily: "Playfair Display, serif" }}>
+                      No Dishes Found
+                    </h4>
+                    <p className="text-[#7A6A5A] text-sm mb-6" style={{ fontFamily: "Inter, sans-serif" }}>
+                      We couldn't find any dishes matching "{searchQuery}". Try searching for something else or browse categories.
+                    </p>
+                    <button
+                      onClick={() => setSearchQuery("")}
+                      className="bg-[#7B1113] text-white px-6 py-2.5 rounded-xl text-sm font-semibold hover:bg-[#9b1416] transition-colors"
+                      style={{ fontFamily: "Inter, sans-serif" }}
+                    >
+                      Clear Search
+                    </button>
+                  </motion.div>
+                )}
+              </motion.div>
             )}
 
             {activeTab === "terms" && (
