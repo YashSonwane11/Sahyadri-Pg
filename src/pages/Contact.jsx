@@ -299,7 +299,7 @@ export default function Contact() {
                       <div className="grid grid-cols-2 gap-4">
                         {[
                           { key: "gender", label: "Gender *", options: [{ v: "", l: "Select Gender" }, { v: "male", l: "Male" }, { v: "female", l: "Female" }] },
-                          { key: "roomPreference", label: "Room Type *", options: [{ v: "", l: "Select Room" }, { v: "double", l: "Double Sharing" }, { v: "triple", l: "Triple Sharing" }] },
+                          { key: "roomPreference", label: "Room Type *", options: [{ v: "", l: "Select Room" }, { v: "single", l: "Single Sharing" }, { v: "double", l: "Double Sharing" }, { v: "triple", l: "Triple Sharing" }, { v: "four", l: "Four Sharing" }] },
                         ].map(({ key, label, options }) => (
                           <div key={key}>
                             <label className="block text-xs font-semibold text-[#7A6A5A] mb-1.5 uppercase tracking-wider" style={{ fontFamily: "Inter, sans-serif" }}>{label}</label>
