@@ -119,6 +119,7 @@ export function HomePage() {
   const [slide, setSlide] = useState(0);
   const [showVideo, setShowVideo] = useState(false);
   const [activeRoomIndex, setActiveRoomIndex] = useState(0);
+  const [activeFeatureIndex, setActiveFeatureIndex] = useState(0);
 
   const next = () => setSlide((c) => (c + 1) % testimonials.length);
   const prev = () => setSlide((c) => (c - 1 + testimonials.length) % testimonials.length);
@@ -126,6 +127,14 @@ export function HomePage() {
   // Auto-advance testimonials
   useEffect(() => {
     const t = setInterval(next, 5000);
+    return () => clearInterval(t);
+  }, []);
+
+  // Auto-advance features on mobile
+  useEffect(() => {
+    const t = setInterval(() => {
+      setActiveFeatureIndex((c) => (c + 1) % features.length);
+    }, 4000);
     return () => clearInterval(t);
   }, []);
 
@@ -331,7 +340,8 @@ export function HomePage() {
             </h2>
           </FadeUp>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Desktop/Tablet Grid View */}
+          <div className="hidden sm:grid grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((f, i) => (
               <FadeUp key={f.title} delay={i * 0.07}>
                 <div className="bg-white rounded-3xl p-8 border border-[#7B1113]/8 hover:shadow-2xl hover:shadow-[#7B1113]/6 hover:-translate-y-2 transition-all duration-400 group h-full">
@@ -343,6 +353,59 @@ export function HomePage() {
                 </div>
               </FadeUp>
             ))}
+          </div>
+
+          {/* Mobile Swipe Slider View */}
+          <div className="block sm:hidden relative w-full overflow-hidden min-h-[290px] px-1 pb-4">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeFeatureIndex}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                onDragEnd={(e, info) => {
+                  const swipeThreshold = 50;
+                  if (info.offset.x < -swipeThreshold) {
+                    setActiveFeatureIndex((prev) => (prev + 1) % features.length);
+                  } else if (info.offset.x > swipeThreshold) {
+                    setActiveFeatureIndex((prev) => (prev - 1 + features.length) % features.length);
+                  }
+                }}
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -40 }}
+                transition={{ duration: 0.3 }}
+                className="bg-white rounded-3xl p-8 border border-[#7B1113]/8 shadow-md flex flex-col justify-between h-[230px] cursor-grab active:cursor-grabbing select-none"
+              >
+                <div>
+                  <div className="w-14 h-14 bg-[#7B1113]/8 rounded-2xl flex items-center justify-center mb-5">
+                    {(() => {
+                      const IconComponent = features[activeFeatureIndex].icon;
+                      return <IconComponent size={24} className="text-[#7B1113]" />;
+                    })()}
+                  </div>
+                  <h3 className="text-[#1A0A0B] mb-2" style={{ fontFamily: "Playfair Display, serif", fontWeight: 600, fontSize: "20px" }}>
+                    {features[activeFeatureIndex].title}
+                  </h3>
+                  <p className="text-[#7A6A5A] text-sm leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
+                    {features[activeFeatureIndex].desc}
+                  </p>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Slide indicator dots */}
+            <div className="flex justify-center gap-2 mt-5">
+              {features.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveFeatureIndex(idx)}
+                  className={`h-2.5 rounded-full transition-all duration-300 ${
+                    activeFeatureIndex === idx ? 'bg-[#7B1113] w-6' : 'bg-[#7B1113]/20 w-2.5'
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
