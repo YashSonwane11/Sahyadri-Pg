@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Target, Eye, Heart, Users, Home, Trophy, ArrowRight } from "lucide-react";
 
-import roomDouble from "../assets/room-double.png";
-import roomTriple from "../assets/room-triple.jpg";
+import roomDouble from "../assets/2_shr_room_main.jpeg";
+import roomTriple from "../assets/3shr_room.jpeg";
 import buildingNight from "../assets/building-night.jpg";
 import buildingDay from "../assets/building-day.jpg";
 import balcony from "../assets/balcony.png";

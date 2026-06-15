@@ -1,6 +1,11 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
+
+import shivajiJayantiImg from "../assets/shivaji_maharaj_jayanti_img.jpeg";
+import holiVideo from "../assets/holi_video.mp4";
+import dahiHandiVideo from "../assets/dahi_handi_video.mp4";
+import shivajiJayantiVideo from "../assets/shivaji_maharaj_jayanti.mp4";
 
 function FadeUp({ children, delay = 0, className = "" }) {
   const ref = useRef(null);
@@ -20,34 +25,32 @@ function FadeUp({ children, delay = 0, className = "" }) {
 
 const eventCategories = [
   { title: "Birthday Celebrations", emoji: "🎂", count: "48+ Events", desc: "Every student's birthday is celebrated with surprise cakes, decorations, and group festivities.", image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=500&h=380&fit=crop&auto=format" },
-  { title: "Festival Celebrations", emoji: "🪔", count: "12+ Festivals", desc: "Diwali, Holi, Navratri, Christmas — all major festivals celebrated together as one big family.", image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=500&h=380&fit=crop&auto=format" },
+  { title: "Festival Celebrations", emoji: "🪔", count: "12+ Festivals", desc: "Diwali, Holi, Navratri, Christmas — all major festivals celebrated together as one big family.", image: shivajiJayantiImg },
   { title: "Farewell Events", emoji: "🎓", count: "Annual", desc: "Heartfelt farewell ceremonies for graduating students with memories, gifts, and celebrations.", image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=500&h=380&fit=crop&auto=format" },
   { title: "Student Gatherings", emoji: "🤝", count: "Monthly", desc: "Movie nights, game evenings, cricket tournaments, and cultural nights to build community bonds.", image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500&h=380&fit=crop&auto=format" },
 ];
 
 const galleryImages = [
-  { src: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=500&h=500&fit=crop&auto=format", alt: "Birthday" },
-  { src: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=500&h=700&fit=crop&auto=format", alt: "Graduation" },
-  { src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500&h=450&fit=crop&auto=format", alt: "Group gathering" },
-  { src: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=500&h=380&fit=crop&auto=format", alt: "Festival" },
-  { src: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500&h=550&fit=crop&auto=format", alt: "Event night" },
-  { src: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=500&h=400&fit=crop&auto=format", alt: "Community" },
-  { src: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=500&h=480&fit=crop&auto=format", alt: "Indoor event" },
-  { src: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=500&h=430&fit=crop&auto=format", alt: "Night event" },
-  { src: "https://images.unsplash.com/photo-1551818255-e6e10975bc17?w=500&h=500&fit=crop&auto=format", alt: "Fun time" },
+  { src: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=500&h=500&fit=crop&auto=format", alt: "Surprise Birthday Party and Cake Cutting" },
+  { src: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=500&h=700&fit=crop&auto=format", alt: "Graduation Farewell Event and Group Photos" },
+  { src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500&h=450&fit=crop&auto=format", alt: "Weekly Student Gatherings and Fun Activities" },
+  { src: shivajiJayantiImg, alt: "Shivaji Maharaj Jayanti Rally and Procession at Sahyadri" },
+  { src: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500&h=550&fit=crop&auto=format", alt: "Diwali Celebration Night with Lanterns" },
+  { src: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=500&h=400&fit=crop&auto=format", alt: "Student Community Group Gathering" },
+  { src: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=500&h=480&fit=crop&auto=format", alt: "Indoor Cultural Performance and Celebration" },
+  { src: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=500&h=430&fit=crop&auto=format", alt: "Night Event and Music Festivities" },
+  { src: "https://images.unsplash.com/photo-1551818255-e6e10975bc17?w=500&h=500&fit=crop&auto=format", alt: "Fun Student Bonding Activities" },
 ];
 
 const videoThumbs = [
-  { title: "Diwali Celebration 2023", duration: "3:24", thumb: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=400&h=240&fit=crop&auto=format" },
-  { title: "Annual Farewell Night", duration: "5:12", thumb: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=400&h=240&fit=crop&auto=format" },
-  { title: "Holi Colors at Sahyadri", duration: "2:48", thumb: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&h=240&fit=crop&auto=format" },
-  { title: "Birthday Surprise Compilation", duration: "4:05", thumb: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400&h=240&fit=crop&auto=format" },
-  { title: "Cricket Tournament 2024", duration: "6:33", thumb: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=400&h=240&fit=crop&auto=format" },
-  { title: "Cultural Night Performances", duration: "8:17", thumb: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=400&h=240&fit=crop&auto=format" },
+  { title: "Holi Colors at Sahyadri PG", duration: "Play", video: holiVideo, thumb: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&h=240&fit=crop&auto=format" },
+  { title: "Shivaji Maharaj Jayanti Celebration", duration: "Play", video: shivajiJayantiVideo, thumb: shivajiJayantiImg },
+  { title: "Dahi Handi Celebration", duration: "Play", video: dahiHandiVideo, thumb: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=400&h=240&fit=crop&auto=format" },
 ];
 
 export default function Events() {
   const sliderRef = useRef(null);
+  const [activeVideo, setActiveVideo] = useState(null);
 
   const scrollSlider = (dir) => {
     if (!sliderRef.current) return;
@@ -165,13 +168,14 @@ export default function Events() {
 
           <div
             ref={sliderRef}
-            className="flex gap-5 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory"
+            className="flex gap-5 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory lg:justify-center justify-start"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {videoThumbs.map((v, i) => (
               <div
                 key={i}
                 className="shrink-0 w-72 snap-start group cursor-pointer"
+                onClick={() => setActiveVideo(v.video)}
               >
                 <div className="relative rounded-2xl overflow-hidden h-44 bg-[#7A6A5A]/20 mb-3">
                   <img src={v.thumb} alt={v.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -214,6 +218,35 @@ export default function Events() {
           </FadeUp>
         </div>
       </section>
+      {/* Video Modal */}
+      {activeVideo && (
+        <motion.div
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          onClick={() => setActiveVideo(null)}
+        >
+          <div className="bg-[#1A0A0B] rounded-3xl overflow-hidden max-w-4xl w-full text-center relative" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={() => setActiveVideo(null)}
+              className="absolute top-4 right-4 text-white hover:text-[#DCCFC0] z-10 bg-[#7B1113]/80 p-2 rounded-full backdrop-blur-sm transition-colors cursor-pointer"
+            >
+              <svg viewBox="0 0 24 24" className="w-6 h-6 stroke-current fill-none stroke-2" xmlns="http://www.w3.org/2000/svg">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+            <div className="aspect-video bg-black flex items-center justify-center">
+              <video
+                src={activeVideo}
+                controls
+                autoPlay
+                className="w-full h-full object-contain"
+              />
+            </div>
+          </div>
+        </motion.div>
+      )}
     </div>
   );
 }

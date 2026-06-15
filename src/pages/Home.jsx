@@ -6,11 +6,12 @@ import {
   Star, ChevronLeft, ChevronRight, Phone, MessageCircle, ArrowRight, Check, Play
 } from "lucide-react";
 
-import roomDouble from "../assets/room-double.png";
-import roomTriple from "../assets/room-triple.jpg";
+import roomDouble from "../assets/2_shr_room_main.jpeg";
+import roomTriple from "../assets/3shr_room.jpeg";
 import buildingNight from "../assets/building-night.jpg";
 import buildingDay from "../assets/building-day.jpg";
 import balcony from "../assets/balcony.png";
+import pgVideo from "../assets/pg_video.mp4";
 
 /* ── animated counter ── */
 function AnimatedCounter({ target, suffix = "" }) {
@@ -50,14 +51,12 @@ const features = [
 const rooms = [
   {
     type: "Double Sharing",
-    price: "₹7,500",
     image: roomDouble,
     features: ["Attached Bathroom", "AC Available", "Study Table", "Wardrobe"],
     badge: "Most Popular", badgeColor: "#7B1113",
   },
   {
     type: "Triple Sharing",
-    price: "₹5,500",
     image: roomTriple,
     features: ["Shared Bathroom", "Study Table", "Wardrobe", "Power Backup"],
     badge: "Best Value", badgeColor: "#C4996A",
@@ -97,11 +96,6 @@ function RoomCard({ room }) {
         <div className="absolute inset-0 bg-gradient-to-t from-[#1A0A0B]/50 to-transparent" />
         <div className="absolute top-4 left-4 text-white text-xs font-semibold px-3.5 py-1.5 rounded-full" style={{ backgroundColor: room.badgeColor, fontFamily: "Inter, sans-serif" }}>
           {room.badge}
-        </div>
-        {/* Price overlay */}
-        <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2">
-          <span className="text-[#7B1113]" style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: "22px" }}>{room.price}</span>
-          <span className="text-[#7A6A5A] text-xs" style={{ fontFamily: "Inter, sans-serif" }}>/mo</span>
         </div>
       </div>
       <div className="p-7">
@@ -217,7 +211,7 @@ export function HomePage() {
                   <span className="w-8 h-8 bg-white rounded-full flex items-center justify-center shrink-0">
                     <Play size={14} className="text-[#7B1113] ml-0.5" fill="#7B1113" />
                   </span>
-                  Watch Tour
+                  Watch PG Tour
                 </button>
               </motion.div>
 
@@ -260,11 +254,8 @@ export function HomePage() {
                     <div className="text-[#DCCFC0] text-[10px] uppercase tracking-widest mb-2" style={{ fontFamily: "Inter, sans-serif", fontWeight: 700 }}>
                       Double Sharing
                     </div>
-                    <div className="text-white mb-0.5" style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: "26px" }}>
-                      ₹7,500
-                    </div>
-                    <div className="text-white/55 text-xs mb-3" style={{ fontFamily: "Inter, sans-serif" }}>
-                      per month · 3 rooms left
+                    <div className="text-white mb-2.5" style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: "24px" }}>
+                      Fully Furnished
                     </div>
                   </div>
                   <div>
@@ -352,6 +343,51 @@ export function HomePage() {
                 </div>
               </FadeUp>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ DEDICATED VIDEO TOUR SECTION ═══ */}
+      <section className="py-24 bg-[#FAF7F4] border-t border-[#7B1113]/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Left: Content */}
+            <div className="lg:col-span-5">
+              <FadeUp>
+                <p className="text-[#7B1113] text-xs uppercase tracking-widest mb-3" style={{ fontFamily: "Inter, sans-serif", fontWeight: 600 }}>Virtual Tour</p>
+                <h2 className="mb-6" style={{ fontFamily: "Playfair Display, serif", fontWeight: 800, fontSize: "clamp(30px, 4vw, 48px)", color: "#1A0A0B", lineHeight: 1.15 }}>
+                  Take a Virtual Tour of <span className="text-[#7B1113]">Sahyadri PG</span>
+                </h2>
+                <p className="text-[#7A6A5A] text-base leading-relaxed mb-8" style={{ fontFamily: "Inter, sans-serif" }}>
+                  Get a real feel of premium student living. Explore our modern rooms, high-quality dining hall, premium amenities, and vibrant common areas.
+                </p>
+                <button
+                  onClick={() => setShowVideo(true)}
+                  className="inline-flex items-center gap-3 bg-[#7B1113] hover:bg-[#9b1416] text-white px-8 py-4 rounded-full font-semibold transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#7B1113]/30"
+                  style={{ fontFamily: "Inter, sans-serif" }}
+                >
+                  <Play size={16} fill="white" /> Open Fullscreen Tour
+                </button>
+              </FadeUp>
+            </div>
+
+            {/* Right: Embedded Video Player */}
+            <div className="lg:col-span-7">
+              <FadeUp delay={0.1}>
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#7B1113]/8 bg-black aspect-video group">
+                  <video
+                    src={pgVideo}
+                    controls
+                    muted
+                    playsInline
+                    preload="metadata"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </FadeUp>
+            </div>
+
           </div>
         </div>
       </section>
@@ -586,25 +622,25 @@ export function HomePage() {
           animate={{ opacity: 1 }}
           onClick={() => setShowVideo(false)}
         >
-          <div className="bg-[#1A0A0B] rounded-2xl p-8 max-w-lg w-full text-center" onClick={(e) => e.stopPropagation()}>
-            <div className="text-5xl mb-4">🎬</div>
-            <h3 className="text-white mb-2" style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: "24px" }}>
-              Virtual Tour Coming Soon
-            </h3>
-            <p className="text-white/60 mb-6" style={{ fontFamily: "Inter, sans-serif" }}>
-              Book a physical visit for a live tour of our premium facilities.
-            </p>
-            <a
-              href="tel:9504059393"
-              className="inline-block bg-[#7B1113] text-white px-6 py-3 rounded-full font-medium"
-              style={{ fontFamily: "Inter, sans-serif" }}
+          <div className="bg-[#1A0A0B] rounded-3xl overflow-hidden max-w-4xl w-full text-center relative" onClick={(e) => e.stopPropagation()}>
+            <button
               onClick={() => setShowVideo(false)}
+              className="absolute top-4 right-4 text-white hover:text-[#DCCFC0] z-10 bg-[#7B1113]/80 p-2 rounded-full backdrop-blur-sm transition-colors cursor-pointer"
             >
-              Call to Schedule Visit
-            </a>
-            <button className="block mx-auto mt-3 text-white/40 text-sm" onClick={() => setShowVideo(false)} style={{ fontFamily: "Inter, sans-serif" }}>
-              Close
+              <svg viewBox="0 0 24 24" className="w-6 h-6 stroke-current fill-none stroke-2" xmlns="http://www.w3.org/2000/svg">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
             </button>
+            <div className="aspect-video bg-black flex items-center justify-center">
+              <video
+                src={pgVideo}
+                controls
+                muted
+                autoPlay
+                className="w-full h-full object-contain"
+              />
+            </div>
           </div>
         </motion.div>
       )}

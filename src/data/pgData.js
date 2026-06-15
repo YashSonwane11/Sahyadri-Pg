@@ -13,8 +13,8 @@ import {
 } from 'react-icons/fa';
 import { MdOutlineCleanHands, MdHealthAndSafety } from 'react-icons/md';
 
-import roomDouble from "../assets/room-double.png";
-import roomTriple from "../assets/room-triple.jpg";
+import roomDouble from "../assets/2_shr_room_main.jpeg";
+import roomTriple from "../assets/3shr_room.jpeg";
 import buildingNight from "../assets/building-night.jpg";
 import buildingDay from "../assets/building-day.jpg";
 import balcony from "../assets/balcony.png";
@@ -32,7 +32,7 @@ export const navLinks = [
 
 export const stats = [
   { value: 500, label: 'Students Housed', suffix: '+' },
-  { value: 100, label: 'Rooms Available', suffix: '+' },
+  { value: 100, label: 'Furnished Rooms', suffix: '+' },
   { value: 24, label: 'Security & CCTV', suffix: '/7' },
   { value: 4.8, label: 'Student Rating', suffix: ' ★' },
 ];
@@ -122,7 +122,6 @@ export const rooms = [
     id: 'double-sharing',
     type: 'Double Sharing Room',
     tagline: 'Perfect balance of privacy and companionship',
-    basePrice: 9500, // example price
     balcony: true,
     features: [
       'Spacious layout with attached Balcony',
@@ -142,7 +141,6 @@ export const rooms = [
     id: 'triple-sharing',
     type: 'Triple Sharing Room',
     tagline: 'Economical, lively and highly student-friendly',
-    basePrice: 8000, // example price
     balcony: true,
     features: [
       'Well-ventilated room with attached Balcony',

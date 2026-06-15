@@ -80,7 +80,7 @@ export default function Mess() {
               Three Nourishing Meals a Day
             </h2>
             <p className="text-[#7A6A5A] mt-2" style={{ fontFamily: "Inter, sans-serif" }}>
-              Mess package: <strong className="text-[#7B1113]">₹2,500/month</strong> (optional add-on)
+              Mess package available (optional add-on)
             </p>
           </div>
 
@@ -123,48 +123,6 @@ export default function Mess() {
           </div>
         </div>
       </section>
-
-      {/* Weekly Menu Table */}
-      <section className="py-20 bg-[#EDE5D8]/40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2
-              style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: "clamp(26px, 4vw, 40px)", color: "#1A0A0B" }}
-            >
-              Weekly Menu
-            </h2>
-            <p className="text-[#7A6A5A] mt-2" style={{ fontFamily: "Inter, sans-serif" }}>
-              Rotating menu to keep every day delicious and different
-            </p>
-          </div>
-
-          <div className="bg-white rounded-2xl overflow-hidden border border-[#7B1113]/8 shadow-sm">
-            <div className="grid grid-cols-4 bg-[#7B1113] px-6 py-4">
-              {["Day", "Breakfast", "Lunch", "Dinner"].map((h) => (
-                <div key={h} className="text-white text-sm font-semibold" style={{ fontFamily: "Inter, sans-serif" }}>
-                  {h}
-                </div>
-              ))}
-            </div>
-            {weeklyMenu.map((row, i) => (
-              <div
-                key={row.day}
-                className={`grid grid-cols-4 px-6 py-4 border-b border-[#7B1113]/5 ${i % 2 === 0 ? "bg-[#FAF7F4]/50" : ""}`}
-              >
-                <div className="text-[#7B1113] font-semibold text-sm" style={{ fontFamily: "Inter, sans-serif" }}>{row.day}</div>
-                <div className="text-[#7A6A5A] text-sm pr-3" style={{ fontFamily: "Inter, sans-serif" }}>{row.breakfast}</div>
-                <div className="text-[#7A6A5A] text-sm pr-3" style={{ fontFamily: "Inter, sans-serif" }}>{row.lunch}</div>
-                <div className="text-[#7A6A5A] text-sm" style={{ fontFamily: "Inter, sans-serif" }}>{row.dinner}</div>
-              </div>
-            ))}
-          </div>
-          <p className="text-center text-xs text-[#7A6A5A] mt-4" style={{ fontFamily: "Inter, sans-serif" }}>
-            * Menu subject to seasonal availability. Non-veg served on Thursday, Saturday & Sunday dinners.
-          </p>
-        </div>
-      </section>
-
-      {/* Nutrition Section */}
       <section className="py-20 bg-[#7B1113]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
