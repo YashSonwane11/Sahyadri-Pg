@@ -9,7 +9,7 @@ import buildingDay from "../assets/building-day.jpg";
 // 2. Paste the Google Apps Script code (available in implementation_plan.md).
 // 3. Deploy it as a Web App: Execute as "Me", Access: "Anyone".
 // 4. Paste the generated Web App URL here.
-const GOOGLE_SHEET_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxxOx704xMDVeowk9IT2dq1RE_96ZjB_Jt3uFxb2RgG83BtEqPoU2FIYuL88E2px8A3gQ/exec"; 
+const GOOGLE_SHEET_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwlUnT_GEe2TiK1eUd661DIE9gM6LCldqsC8UXJrngiPLGIWvOVH4GvxJN9r16BvTS3Jg/exec"; 
 
 function FadeUp({ children, delay = 0, className = "" }) {
   const ref = useRef(null);
