@@ -136,16 +136,22 @@ export default function Rooms() {
 
           {/* Tabs */}
           <FadeUp className="mb-12">
-            <div className="flex flex-wrap gap-2 bg-white border border-[#7B1113]/10 p-1.5 rounded-2xl w-fit shadow-sm">
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2 bg-white border border-[#7B1113]/10 p-1.5 rounded-2xl w-full sm:w-fit shadow-sm">
               {["single", "double", "triple", "quad"].map((tab) => (
                 <button
                   key={tab}
                   onClick={() => switchTab(tab)}
-                  className={`px-7 py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${activeTab === tab ? "bg-[#7B1113] text-white shadow-md" : "text-[#7A6A5A] hover:text-[#1A0A0B]"}`}
+                  className={`w-full sm:w-auto px-3 sm:px-7 py-3 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 text-center flex items-center justify-center gap-1 ${
+                    activeTab === tab ? "bg-[#7B1113] text-white shadow-md" : "text-[#7A6A5A] hover:text-[#1A0A0B]"
+                  }`}
                   style={{ fontFamily: "Inter, sans-serif" }}
                 >
-                  {roomData[tab].label}
-                  {tab === "double" && <span className="ml-2 text-xs bg-[#DCCFC0]/60 text-[#7B1113] px-2 py-0.5 rounded-full">Popular</span>}
+                  <span>{roomData[tab].label}</span>
+                  {tab === "double" && (
+                    <span className="ml-1 text-[9px] sm:text-xs bg-[#DCCFC0]/60 text-[#7B1113] px-1.5 py-0.5 rounded-full shrink-0">
+                      Popular
+                    </span>
+                  )}
                 </button>
               ))}
             </div>
