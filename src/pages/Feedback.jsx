@@ -23,7 +23,7 @@ function FadeUp({ children, delay = 0, className = "" }) {
 const reviews = [
   { id: 1, name: "Priya Sharma", college: "B.Tech CSE — MIT ADT", rating: 5, date: "March 2024", review: "The best PG experience! Food is amazing — just like home-cooked meals. Security is excellent and WiFi never fails even during exam season.", initials: "PS", color: "linear-gradient(135deg, #7B1113, #a21a1d)", helpful: 14 },
   { id: 2, name: "Rahul Deshmukh", college: "MBA — MIT ADT", rating: 5, date: "February 2024", review: "Clean, well-maintained, and professionally managed. The warden addresses any issue within hours. Highly recommend for working professionals too.", initials: "RD", color: "linear-gradient(135deg, #C4996A, #dfb485)", helpful: 11 },
-  { id: 3, name: "Sneha Patil", college: "B.Pharm — MIT ADT", rating: 5, date: "January 2024", review: "Been here 2 years. The community is wonderful. Festivals are celebrated together, birthdays never go unnoticed. Made lifelong friends here.", initials: "SP", color: "linear-gradient(135deg, #2A4858, #406f87)", helpful: 9 },
+  { id: 3, name: "Sneha Patil", college: "B.Tech Aerospace — MIT ADT", rating: 5, date: "January 2024", review: "Been here 2 years. The community is wonderful. Festivals are celebrated together, birthdays never go unnoticed. Made lifelong friends here.", initials: "SP", color: "linear-gradient(135deg, #2A4858, #406f87)", helpful: 9 },
   { id: 4, name: "Arjun Kulkarni", college: "M.Tech — MIT ADT", rating: 4, date: "December 2023", review: "Great value for money. Triple sharing rooms are spacious. Power backup is a real lifesaver during load shedding months.", initials: "AK", color: "linear-gradient(135deg, #4A3E3D, #705f5d)", helpful: 7 },
   { id: 5, name: "Anjali Mishra", college: "BCA — MIT ADT", rating: 5, date: "November 2023", review: "As a girl from UP, I was nervous about Pune. Sahyadri PG made the transition easy. The all-girls floor has excellent security and the warden aunty is like a second mother.", initials: "AM", color: "linear-gradient(135deg, #7B1113, #a21a1d)", helpful: 18 },
   { id: 6, name: "Vikram Nair", college: "B.Tech IT — MIT ADT", rating: 4, date: "October 2023", review: "The Sunday special menu is something I look forward to every week. Internet speed is genuinely fast — attended online internship interviews without any issues.", initials: "VN", color: "linear-gradient(135deg, #2A4858, #406f87)", helpful: 5 },
@@ -33,18 +33,7 @@ const totalRatings = { 5: 312, 4: 87, 3: 22, 2: 8, 1: 3 };
 const totalCount = Object.values(totalRatings).reduce((a, b) => a + b, 0);
 const avgRating = (Object.entries(totalRatings).reduce((sum, [s, c]) => sum + Number(s) * c, 0) / totalCount).toFixed(1);
 
-function StarPicker({ value, onChange }) {
-  const [hovered, setHovered] = useState(0);
-  return (
-    <div className="flex gap-2">
-      {[1, 2, 3, 4, 5].map((s) => (
-        <button key={s} type="button" onClick={() => onChange(s)} onMouseEnter={() => setHovered(s)} onMouseLeave={() => setHovered(0)} className="transition-transform hover:scale-125">
-          <Star size={32} className={`${s <= (hovered || value) ? "text-[#C4996A] fill-[#C4996A]" : "text-[#DCCFC0]"} transition-colors`} />
-        </button>
-      ))}
-    </div>
-  );
-}
+
 
 function RatingBar({ star, count, total, delay }) {
   const ref = useRef(null);
@@ -67,8 +56,6 @@ function RatingBar({ star, count, total, delay }) {
 }
 
 export default function Feedback() {
-  const [form, setForm] = useState({ name: "", rating: 0, comment: "" });
-  const [submitted, setSubmitted] = useState(false);
   const [likedIds, setLikedIds] = useState(new Set());
 
   const handleLike = (id) => {
@@ -182,79 +169,7 @@ export default function Feedback() {
         </div>
       </section>
 
-      {/* ─── Feedback Form ─── */}
-      <section className="py-20 bg-[#EDE5D8]/35">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeUp className="text-center mb-10">
-            <h2 className="text-[#1A0A0B]" style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: "clamp(26px, 4vw, 40px)" }}>
-              Share Your Experience
-            </h2>
-            <p className="text-[#7A6A5A] mt-2" style={{ fontFamily: "Inter, sans-serif" }}>
-              Your feedback helps us improve and helps future students choose wisely.
-            </p>
-          </FadeUp>
 
-          <FadeUp delay={0.1}>
-            <div className="bg-white rounded-3xl p-8 border border-[#7B1113]/8 shadow-sm">
-              {submitted ? (
-                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center py-12">
-                  <div className="text-6xl mb-5">🙏</div>
-                  <h3 className="text-[#7B1113] mb-2" style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: "24px" }}>Thank You!</h3>
-                  <p className="text-[#7A6A5A]" style={{ fontFamily: "Inter, sans-serif" }}>
-                    Your review has been submitted and will appear after moderation.
-                  </p>
-                </motion.div>
-              ) : (
-                <form onSubmit={(e) => { e.preventDefault(); if (form.rating > 0) setSubmitted(true); }} className="space-y-6">
-                  <div>
-                    <label className="block text-xs font-semibold text-[#7A6A5A] mb-1.5 uppercase tracking-wider" style={{ fontFamily: "Inter, sans-serif" }}>Your Name *</label>
-                    <input
-                      required
-                      type="text"
-                      placeholder="Full name"
-                      value={form.name}
-                      onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      className="w-full bg-[#FAF7F4] border border-[#DCCFC0] rounded-xl px-4 py-3 text-sm text-[#1A0A0B] focus:outline-none focus:border-[#7B1113] focus:ring-2 focus:ring-[#7B1113]/10 transition-all placeholder:text-[#7A6A5A]/40"
-                      style={{ fontFamily: "Inter, sans-serif" }}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-[#7A6A5A] mb-3 uppercase tracking-wider" style={{ fontFamily: "Inter, sans-serif" }}>Your Rating *</label>
-                    <StarPicker value={form.rating} onChange={(v) => setForm({ ...form, rating: v })} />
-                    {form.rating === 0 && <p className="text-xs text-[#7A6A5A] mt-2" style={{ fontFamily: "Inter, sans-serif" }}>Tap a star to rate</p>}
-                    {form.rating > 0 && (
-                      <p className="text-xs text-[#7B1113] mt-2 font-medium" style={{ fontFamily: "Inter, sans-serif" }}>
-                        {["", "Poor", "Fair", "Good", "Very Good", "Excellent!"][form.rating]}
-                      </p>
-                    )}
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-[#7A6A5A] mb-1.5 uppercase tracking-wider" style={{ fontFamily: "Inter, sans-serif" }}>Your Review *</label>
-                    <textarea
-                      required
-                      rows={5}
-                      placeholder="Share your experience at Sahyadri PG..."
-                      value={form.comment}
-                      onChange={(e) => setForm({ ...form, comment: e.target.value })}
-                      className="w-full bg-[#FAF7F4] border border-[#DCCFC0] rounded-xl px-4 py-3 text-sm text-[#1A0A0B] focus:outline-none focus:border-[#7B1113] focus:ring-2 focus:ring-[#7B1113]/10 transition-all placeholder:text-[#7A6A5A]/40 resize-none"
-                      style={{ fontFamily: "Inter, sans-serif" }}
-                    />
-                  </div>
-                  <motion.button
-                    type="submit"
-                    whileHover={{ scale: 1.01 }}
-                    whileTap={{ scale: 0.99 }}
-                    className="w-full bg-[#7B1113] text-white py-4 rounded-2xl font-semibold hover:bg-[#9b1416] transition-colors"
-                    style={{ fontFamily: "Inter, sans-serif" }}
-                  >
-                    Submit Review
-                  </motion.button>
-                </form>
-              )}
-            </div>
-          </FadeUp>
-        </div>
-      </section>
     </div>
   );
 }

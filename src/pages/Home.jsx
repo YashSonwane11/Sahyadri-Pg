@@ -82,7 +82,7 @@ const rooms = [
 const testimonials = [
   { name: "Priya Sharma", college: "B.Tech CSE — MIT ADT", rating: 5, review: "Sahyadri PG is the best decision I made in college. The food is amazing, security is top-notch, and the staff feels like family. Highly recommended!", initials: "PS", color: "linear-gradient(135deg, #7B1113, #a21a1d)" },
   { name: "Rahul Deshmukh", college: "MBA — MIT ADT", rating: 5, review: "Clean rooms, great food, excellent WiFi. Everything a student needs. The location is perfect — just 5 minutes from campus.", initials: "RD", color: "linear-gradient(135deg, #C4996A, #dfb485)" },
-  { name: "Sneha Patil", college: "B.Pharm — MIT ADT", rating: 5, review: "I've stayed here 2 years with zero complaints. The warden is incredibly supportive and the premises always feel safe and welcoming.", initials: "SP", color: "linear-gradient(135deg, #2A4858, #406f87)" },
+  { name: "Sneha Patil", college: "B.Tech Aerospace — MIT ADT", rating: 5, review: "I've stayed here 2 years with zero complaints. The warden is incredibly supportive and the premises always feel safe and welcoming.", initials: "SP", color: "linear-gradient(135deg, #2A4858, #406f87)" },
   { name: "Arjun Kulkarni", college: "M.Tech — MIT ADT", rating: 4, review: "Exceptional value for money. Best amenities at a very reasonable price. Power backup is a lifesaver during load-shedding months.", initials: "AK", color: "linear-gradient(135deg, #4A3E3D, #705f5d)" },
 ];
 

@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
-import { Check, X, Phone, MessageCircle, ChevronLeft, ChevronRight, Zap } from "lucide-react";
+import { Check, MessageCircle, ChevronLeft, ChevronRight } from "lucide-react";
 
 import roomDoubleMain from "../assets/2_shr_room_main.jpeg";
 import roomDoubleSec from "../assets/2_shr_room.jpeg";
@@ -87,17 +87,7 @@ const roomData = {
   },
 };
 
-const comparisonFeatures = [
-  { feature: "Room Size", single: "~150 sq ft", double: "~250 sq ft", triple: "~320 sq ft", quad: "~380 sq ft" },
-  { feature: "Occupancy", single: "1 Student", double: "2 Students", triple: "3 Students", quad: "4 Students" },
-  { feature: "Bathroom", single: "Attached Private", double: "Attached Private", triple: "Shared (1:3)", quad: "Shared (1:4)" },
-  { feature: "Study Desk", single: true, double: true, triple: true, quad: true },
-  { feature: "Individual Wardrobe", single: true, double: true, triple: true, quad: true },
-  { feature: "Air Conditioning", single: "Optional", double: "Optional", triple: false, quad: false },
-  { feature: "WiFi Included", single: true, double: true, triple: true, quad: true },
-  { feature: "Power Backup", single: true, double: true, triple: true, quad: true },
-  { feature: "CCTV Coverage", single: true, double: true, triple: true, quad: true },
-];
+
 
 export default function Rooms() {
   const [activeTab, setActiveTab] = useState("double");
@@ -265,56 +255,7 @@ export default function Rooms() {
         </div>
       </section>
 
-      {/* ─── Comparison Table ─── */}
-      <section className="py-24 bg-[#1A0A0B]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeUp className="text-center mb-14">
-            <h2 className="text-white" style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: "clamp(26px, 4vw, 42px)" }}>
-              Room Comparison
-            </h2>
-            <p className="text-[#DCCFC0]/50 mt-2" style={{ fontFamily: "Inter, sans-serif" }}>Compare and choose what's right for you</p>
-          </FadeUp>
 
-          <FadeUp delay={0.1}>
-            <div className="overflow-x-auto rounded-3xl border border-white/8 shadow-2xl">
-              <div className="min-w-[800px]">
-                <div className="grid grid-cols-5 bg-[#7B1113] px-6 py-5">
-                  <div className="text-[#DCCFC0]/70 text-sm font-medium" style={{ fontFamily: "Inter, sans-serif" }}>Feature</div>
-                  <div className="text-white text-sm font-semibold text-center" style={{ fontFamily: "Inter, sans-serif" }}>1 Sharing</div>
-                  <div className="text-white text-sm font-semibold text-center" style={{ fontFamily: "Inter, sans-serif" }}>2 Sharing</div>
-                  <div className="text-white text-sm font-semibold text-center" style={{ fontFamily: "Inter, sans-serif" }}>3 Sharing</div>
-                  <div className="text-white text-sm font-semibold text-center" style={{ fontFamily: "Inter, sans-serif" }}>4 Sharing</div>
-                </div>
-                {comparisonFeatures.map((row, i) => (
-                  <div key={row.feature} className={`grid grid-cols-5 px-6 py-4 border-b border-white/5 ${i % 2 === 0 ? "bg-white/3" : "bg-transparent"}`}>
-                    <div className="text-[#DCCFC0]/60 text-sm" style={{ fontFamily: "Inter, sans-serif" }}>{row.feature}</div>
-                    {["single", "double", "triple", "quad"].map((type) => (
-                      <div key={type} className="text-center flex items-center justify-center">
-                        {typeof row[type] === "boolean" ? (
-                          row[type]
-                            ? <div className="w-5 h-5 bg-green-500/20 rounded-full flex items-center justify-center"><Check size={12} className="text-green-400" /></div>
-                            : <div className="w-5 h-5 bg-red-500/20 rounded-full flex items-center justify-center"><X size={12} className="text-red-400" /></div>
-                        ) : <span className="text-white text-sm" style={{ fontFamily: "Inter, sans-serif" }}>{row[type]}</span>}
-                      </div>
-                    ))}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </FadeUp>
-
-          <FadeUp delay={0.15} className="mt-10 text-center">
-            <a
-              href="tel:9504059393"
-              className="inline-flex items-center gap-3 bg-white text-[#7B1113] px-8 py-4 rounded-full font-semibold hover:bg-[#DCCFC0] transition-colors"
-              style={{ fontFamily: "Inter, sans-serif" }}
-            >
-              <Phone size={16} />
-              Call for Booking: 9504059393
-            </a>
-          </FadeUp>
-        </div>
-      </section>
     </div>
   );
 }

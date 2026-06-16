@@ -52,7 +52,7 @@ export default function About() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#1A0A0B]/92 via-[#1A0A0B]/45 to-transparent" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-12">
-          <p className="text-[#DCCFC0]/60 text-xs uppercase tracking-widest mb-2" style={{ fontFamily: "Inter, sans-serif", fontWeight: 600 }}>Est. 2018</p>
+          <p className="text-[#DCCFC0]/60 text-xs uppercase tracking-widest mb-2" style={{ fontFamily: "Inter, sans-serif", fontWeight: 600 }}>Est. 2023</p>
           <h1 className="text-white" style={{ fontFamily: "Playfair Display, serif", fontWeight: 800, fontSize: "clamp(36px, 5vw, 68px)" }}>
             About Sahyadri PG
           </h1>
@@ -90,7 +90,7 @@ export default function About() {
                 A Home Away From Home for 500+ Students
               </h2>
               <p className="text-[#7A6A5A] mb-5 leading-relaxed" style={{ fontFamily: "Inter, sans-serif", fontSize: "16px" }}>
-                Sahyadri PG was founded with a single vision: provide students near MIT ADT University with accommodation that doesn't compromise on safety, comfort, or nutrition. What started as a 20-room facility in 2018 has grown into one of Loni Kalbhor's most trusted student residences.
+                Sahyadri PG was founded with a single vision: provide students near MIT ADT University with accommodation that doesn't compromise on safety, comfort, or nutrition. What started as a 20-room facility in 2023 has grown into one of Loni Kalbhor's most trusted student residences.
               </p>
               <p className="text-[#7A6A5A] mb-8 leading-relaxed" style={{ fontFamily: "Inter, sans-serif", fontSize: "16px" }}>
                 We believe a student's living environment directly impacts academic performance. That's why we've invested in high-speed internet, nutritious meals, and a safe, supportive community where every student can focus on what matters most — their education.

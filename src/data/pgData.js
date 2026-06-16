@@ -199,7 +199,7 @@ export const testimonials = [
 export const contactInfo = {
   phones: ['+91 9504059393', '+91 9119015353'],
   address: 'Chintamani Park, Near MIT ADT University, Loni Kalbhor, Pune, Maharashtra 412201',
-  email: 'info@sahyadripg.com',
+  email: 'sahyadri.living@gmail.com',
   whatsapp: '919504059393', // international format without +
   mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.5683938446274!2d73.9784386!3d18.5032517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c20a8fae8557%3A0xe104443907c0879f!2sMIT%20Art%2C%20Design%20and%20Technology%20University!5e0!3m2!1sen!2sin!4v1717900000000!5m2!1sen!2sin',
 };
