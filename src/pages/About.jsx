@@ -9,6 +9,7 @@ import buildingNight from "../assets/building-night.jpg";
 import buildingDay from "../assets/building-day.jpg";
 import balcony from "../assets/balcony.png";
 import bathroom from "../assets/bathroom.jpeg";
+import founderImage from "../assets/founder.png";
 
 function FadeIn({ children, delay = 0, className = "" }) {
   const ref = useRef(null);
@@ -102,6 +103,44 @@ export default function About() {
                 <a href="tel:9504059393" className="text-[#7B1113] font-medium text-sm hover:underline" style={{ fontFamily: "Inter, sans-serif" }}>Call: 9504059393</a>
               </div>
             </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* Meet the Founder */}
+      <section className="py-24 bg-[#EDE5D8]/20 border-t border-[#7B1113]/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            {/* Left: Image */}
+            <div className="lg:col-span-5 flex justify-center">
+              <FadeIn className="relative max-w-sm w-full">
+                <div className="rounded-3xl overflow-hidden shadow-2xl border border-[#7B1113]/10 bg-white aspect-[4/5]">
+                  <img src={founderImage} alt="Founder of Sahyadri PG" className="w-full h-full object-cover" />
+                </div>
+                {/* Decorative border accent */}
+                <div className="absolute -inset-3 border border-[#7B1113]/15 rounded-[36px] pointer-events-none -z-10" />
+              </FadeIn>
+            </div>
+
+            {/* Right: Content */}
+            <div className="lg:col-span-7">
+              <FadeIn delay={0.12}>
+                <p className="text-[#7B1113] text-xs uppercase tracking-widest mb-3" style={{ fontFamily: "Inter, sans-serif", fontWeight: 600 }}>Leadership</p>
+                <h2 className="text-[#1A0A0B] mb-4" style={{ fontFamily: "Playfair Display, serif", fontWeight: 800, fontSize: "clamp(28px, 3vw, 42px)", lineHeight: 1.2 }}>
+                  Meet Our Founder
+                </h2>
+                <h3 className="text-[#7B1113] font-semibold text-lg mb-6" style={{ fontFamily: "Inter, sans-serif" }}>
+                  Aniket Kulkarni <span className="text-[#7A6A5A] font-normal text-sm block sm:inline sm:ml-2">· Founder, Sahyadri PG</span>
+                </h3>
+                
+                <p className="text-[#7A6A5A] mb-5 leading-relaxed italic text-lg" style={{ fontFamily: "Playfair Display, serif" }}>
+                  "We built Sahyadri PG to be more than just a place to sleep. It is a home where students find safety, premium comfort, and a supportive community to excel in their academic journeys."
+                </p>
+                <p className="text-[#7A6A5A] mb-8 leading-relaxed text-sm sm:text-base" style={{ fontFamily: "Inter, sans-serif" }}>
+                  Under his leadership, Sahyadri PG has prioritized high-standard accommodations, daily room hygiene, professional security systems, and nutritious homely meals through Aaradhya Kitchen.
+                </p>
+              </FadeIn>
+            </div>
           </div>
         </div>
       </section>
