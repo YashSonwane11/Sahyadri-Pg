@@ -1,10 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
 import ganeshFestival from "../assets/ganesh_festival.png";
 import navratriCelebration from "../assets/navratri_celebration.png";
 import diwaliCelebration from "../assets/diwali_celebration.png";
 import shivajiMaharaj from "../assets/shivaji_maharaj_jayanti_img.jpeg";
+import dahiHandiCelebration from "../assets/dahi_handi_celebration.jpg";
+import birthdayCelebration from "../assets/birthday_celebration.jpg";
 
 function FadeUp({ children, delay = 0, className = "" }) {
   const ref = useRef(null);
@@ -54,19 +56,26 @@ const eventCategories = [
     desc: "Celebrating Chhatrapati Shivaji Maharaj Jayanti with pride. Students gather for traditional pooja, pay tribute, share his history, and participate in cultural events.",
     image: shivajiMaharaj,
     highlights: ["Traditional Pooja & Aarti", "Tribute to Maharaj", "Inspirational Speeches", "Cultural Programs"]
+  },
+  {
+    title: "Dahi Handi Celebration",
+    emoji: "🏺",
+    count: "Festive Spirit",
+    desc: "Students celebrate the festive spirit of Dahi Handi with enthusiasm, teamwork, and cultural activities.",
+    image: dahiHandiCelebration,
+    highlights: ["Dahi Handi Breaking", "Human Pyramid Teamwork", "Festive Music & Dance", "Water Splashing"]
+  },
+  {
+    title: "Birthday Celebrations",
+    emoji: "🎂",
+    count: "Resident Life",
+    desc: "Special birthday celebrations organized for residents to create memorable moments and a family-like atmosphere.",
+    image: birthdayCelebration,
+    highlights: ["Cake Cutting Ceremony", "Midnight Surprises", "Resident Gatherings", "Memorable Photo Sessions"]
   }
 ];
 
-const galleryImages = [
-  { src: ganeshFestival, alt: "Devotional Ganesh Festival setup and decor at Sahyadri PG" },
-  { src: navratriCelebration, alt: "Students enjoying traditional Garba and Dandiya dance for Navratri" },
-  { src: diwaliCelebration, alt: "Sahyadri PG building illuminated with bright golden lights for Diwali" },
-  { src: shivajiMaharaj, alt: "Shivaji Maharaj Jayanti celebration and tribute at Sahyadri PG" },
-];
-
 export default function Events() {
-  const [lightboxImage, setLightboxImage] = useState(null);
-
   return (
     <div className="bg-[#FAF7F4] pt-20">
 
@@ -98,7 +107,7 @@ export default function Events() {
             </h2>
           </FadeUp>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {eventCategories.map((e, i) => (
               <FadeUp key={e.title} delay={i * 0.08}>
                 <div className="bg-white rounded-3xl overflow-hidden border border-[#7B1113]/8 hover:shadow-2xl hover:shadow-[#7B1113]/6 hover:-translate-y-2 transition-all duration-400 group h-full flex flex-col justify-between">
@@ -132,36 +141,6 @@ export default function Events() {
         </div>
       </section>
 
-      {/* ─── Photo Gallery ─── */}
-      <section className="py-16 bg-[#EDE5D8]/35">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeUp className="text-center mb-12">
-            <h2 style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: "clamp(26px, 4vw, 42px)", color: "#1A0A0B" }}>
-              Moments That Matter
-            </h2>
-            <p className="text-[#7A6A5A] mt-2 text-sm" style={{ fontFamily: "Inter, sans-serif" }}>Captured memories from the Sahyadri family</p>
-          </FadeUp>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {galleryImages.map((img, i) => (
-              <FadeUp key={i} delay={i * 0.05} className="overflow-hidden rounded-3xl aspect-[4/3] shadow-lg border border-[#7B1113]/5">
-                <div
-                  className="w-full h-full group cursor-pointer overflow-hidden relative"
-                  onClick={() => setLightboxImage(img)}
-                >
-                  <img src={img.src} alt={img.alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <div className="absolute inset-0 bg-[#1A0A0B]/0 group-hover:bg-[#1A0A0B]/30 transition-colors duration-300 flex items-center justify-center">
-                    <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-sm font-medium" style={{ fontFamily: "Inter, sans-serif" }}>
-                      View Full Image
-                    </span>
-                  </div>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ─── CTA ─── */}
       <section className="py-20 bg-[#7B1113]">
         <div className="max-w-3xl mx-auto px-4 text-center">
@@ -183,33 +162,6 @@ export default function Events() {
         </div>
       </section>
 
-      {/* Lightbox Modal */}
-      {lightboxImage && (
-        <motion.div
-          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          onClick={() => setLightboxImage(null)}
-        >
-          <div className="relative max-w-4xl w-full max-h-[85vh] flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
-            <button
-              onClick={() => setLightboxImage(null)}
-              className="absolute -top-12 right-0 text-white hover:text-[#DCCFC0] z-10 bg-[#7B1113]/80 p-2.5 rounded-full backdrop-blur-sm transition-colors cursor-pointer"
-            >
-              <svg viewBox="0 0 24 24" className="w-5 h-5 stroke-current fill-none stroke-2" xmlns="http://www.w3.org/2000/svg">
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>
-            </button>
-            <div className="relative rounded-2xl overflow-hidden bg-[#1A0A0B] p-2 border border-[#7B1113]/10">
-              <img src={lightboxImage.src} alt={lightboxImage.alt} className="max-w-full max-h-[75vh] object-contain rounded-xl" />
-              <div className="text-center text-white/80 text-xs mt-3 px-4 py-1" style={{ fontFamily: "Inter, sans-serif" }}>
-                {lightboxImage.alt}
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      )}
     </div>
   );
 }

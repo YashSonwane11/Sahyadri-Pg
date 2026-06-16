@@ -4,6 +4,18 @@ import { motion, useInView } from "framer-motion";
 import { Wifi, Shield, UtensilsCrossed, Refrigerator, WashingMachine, Droplets, Car, Flame, Sparkles, Zap, Bath, Lock } from "lucide-react";
 
 import balcony from "../assets/balcony.png";
+import amenityWifi from "../assets/amenity_wifi.jpg";
+import amenityCctv from "../assets/amenity_cctv.jpg";
+import amenityMessFood from "../assets/amenity_mess_food.jpg";
+import amenityRefrigerator from "../assets/amenity_refrigerator.jpg";
+import amenityWashingMachine from "../assets/amenity_washing_machine.jpg";
+import amenityMineralWater from "../assets/amenity_mineral_water.jpg";
+import amenityParking from "../assets/amenity_parking.jpg";
+import amenityHotWater from "../assets/amenity_hot_water.jpg";
+import amenityCleaning from "../assets/amenity_cleaning.jpg";
+import amenityPowerBackup from "../assets/amenity_power_backup.jpg";
+import amenityBathroom from "../assets/amenity_bathroom.jpg";
+import amenitySecurityGuard from "../assets/amenity_security_guard.jpg";
 
 function FadeIn({ children, delay = 0, className = "" }) {
   const ref = useRef(null);
@@ -22,18 +34,18 @@ function FadeIn({ children, delay = 0, className = "" }) {
 }
 
 const amenities = [
-  { icon: Wifi, title: "High-Speed WiFi", desc: "Dedicated 100 Mbps fiber with separate router per floor for lag-free streaming and online classes.", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop&auto=format" },
-  { icon: Shield, title: "CCTV Surveillance", desc: "32-camera HD system covering all common areas and corridors monitored 24/7 by trained staff.", image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=300&h=200&fit=crop&auto=format" },
-  { icon: UtensilsCrossed, title: "Nutritious Mess Food", desc: "3 balanced meals daily with a variety of North & South Indian dishes. Sunday special every week.", image: "https://images.unsplash.com/photo-1567337710282-00832b415979?w=300&h=200&fit=crop&auto=format" },
-  { icon: Refrigerator, title: "Refrigerator Access", desc: "Shared refrigerators on each floor for storing personal food items, medicines, and beverages.", image: "https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?w=300&h=200&fit=crop&auto=format" },
-  { icon: WashingMachine, title: "Washing Machine", desc: "Fully automatic machines on every floor with scheduled usage timings for convenience.", image: "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=300&h=200&fit=crop&auto=format" },
-  { icon: Droplets, title: "Mineral Water", desc: "RO-purified drinking water dispensers on every floor, tested monthly for quality and purity.", image: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=300&h=200&fit=crop&auto=format" },
-  { icon: Car, title: "Free Parking", desc: "Covered parking for two-wheelers and dedicated bicycle stand within premises at no cost.", image: "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?w=300&h=200&fit=crop&auto=format" },
-  { icon: Flame, title: "24/7 Hot Water", desc: "Solar-powered geysers with instant electric backup ensure hot water round the clock.", image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=300&h=200&fit=crop&auto=format" },
-  { icon: Sparkles, title: "Daily Room Cleaning", desc: "Professional housekeeping staff clean rooms and common areas daily maintaining premium standards.", image: "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=300&h=200&fit=crop&auto=format" },
-  { icon: Zap, title: "Power Backup", desc: "24/7 inverter and generator backup ensures uninterrupted power supply during load-shedding.", image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=300&h=200&fit=crop&auto=format" },
-  { icon: Bath, title: "Attached Bathroom", desc: "Premium rooms with modern attached bathrooms, western fittings, and regular deep cleaning.", image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=300&h=200&fit=crop&auto=format" },
-  { icon: Lock, title: "Security Guard", desc: "Trained security personnel at entry gate 24/7 with visitor log and biometric access.", image: "https://images.unsplash.com/photo-1543286386-713bdd548da4?w=300&h=200&fit=crop&auto=format" },
+  { icon: Wifi, title: "High-Speed WiFi", desc: "Dedicated 100 Mbps fiber with separate router per floor for lag-free streaming and online classes.", image: amenityWifi },
+  { icon: Shield, title: "CCTV Surveillance", desc: "32-camera HD system covering all common areas and corridors monitored 24/7 by trained staff.", image: amenityCctv, position: "left bottom" },
+  { icon: UtensilsCrossed, title: "Nutritious Mess Food", desc: "3 balanced meals daily with a variety of North & South Indian dishes. Sunday special every week.", image: amenityMessFood },
+  { icon: Refrigerator, title: "Refrigerator Access", desc: "Shared refrigerators on each floor for storing personal food items, medicines, and beverages.", image: amenityRefrigerator },
+  { icon: WashingMachine, title: "Washing Machine", desc: "Fully automatic machines on every floor with scheduled usage timings for convenience.", image: amenityWashingMachine },
+  { icon: Droplets, title: "Mineral Water", desc: "RO-purified drinking water dispensers on every floor, tested monthly for quality and purity.", image: amenityMineralWater },
+  { icon: Car, title: "Free Parking", desc: "Covered parking for two-wheelers and dedicated bicycle stand within premises at no cost.", image: amenityParking },
+  { icon: Flame, title: "24/7 Hot Water", desc: "Solar-powered geysers with instant electric backup ensure hot water round the clock.", image: amenityHotWater },
+  { icon: Sparkles, title: "Daily Room Cleaning", desc: "Professional housekeeping staff clean rooms and common areas daily maintaining premium standards.", image: amenityCleaning },
+  { icon: Zap, title: "Power Backup", desc: "24/7 inverter and generator backup ensures uninterrupted power supply during load-shedding.", image: amenityPowerBackup },
+  { icon: Bath, title: "Attached Bathroom", desc: "Premium rooms with modern attached bathrooms, western fittings, and regular deep cleaning.", image: amenityBathroom },
+  { icon: Lock, title: "Security Guard", desc: "Trained security personnel at entry gate 24/7 with visitor log and biometric access.", image: amenitySecurityGuard },
 ];
 
 export default function Amenities() {
@@ -76,7 +88,12 @@ export default function Amenities() {
               <FadeIn key={a.title} delay={(i % 4) * 0.07}>
                 <div className="bg-white rounded-2xl overflow-hidden border border-[#7B1113]/8 hover:shadow-2xl hover:shadow-[#7B1113]/6 hover:-translate-y-2 transition-all duration-400 group">
                   <div className="h-36 overflow-hidden relative">
-                    <img src={a.image} alt={a.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                    <img 
+                      src={a.image} 
+                      alt={a.title} 
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+                      style={{ objectPosition: a.position || "center" }}
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1A0A0B]/65 to-transparent" />
                     <div className="absolute bottom-3 left-3 w-10 h-10 bg-[#7B1113] rounded-xl flex items-center justify-center shadow-lg">
                       <a.icon size={18} className="text-white" />
