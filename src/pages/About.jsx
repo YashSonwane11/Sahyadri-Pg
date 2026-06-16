@@ -130,7 +130,7 @@ export default function About() {
                   Meet Our Founder
                 </h2>
                 <h3 className="text-[#7B1113] font-semibold text-lg mb-6" style={{ fontFamily: "Inter, sans-serif" }}>
-                  Aniket Kulkarni <span className="text-[#7A6A5A] font-normal text-sm block sm:inline sm:ml-2">· Founder, Sahyadri PG</span>
+                  Mr Kishor Pawar <span className="text-[#7A6A5A] font-normal text-sm block sm:inline sm:ml-2">· Founder, Sahyadri PG</span>
                 </h3>
                 
                 <p className="text-[#7A6A5A] mb-5 leading-relaxed italic text-lg" style={{ fontFamily: "Playfair Display, serif" }}>
