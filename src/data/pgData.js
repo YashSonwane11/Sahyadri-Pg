@@ -162,7 +162,8 @@ export const testimonials = [
     id: 1,
     name: 'Aditya Shinde',
     role: 'MIT ADT Student (B.Tech CSE)',
-    avatar: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=120&q=80',
+    initials: 'AS',
+    color: 'linear-gradient(135deg, #7B1113, #a21a1d)',
     rating: 5,
     review: 'Sahyadri PG has been my home for 2 years now. The food is honestly like home, the WiFi never fails, and its located extremely close to campus. Security is top notch!'
   },
@@ -170,7 +171,8 @@ export const testimonials = [
     id: 2,
     name: 'Rohan Deshmukh',
     role: 'MIT ADT Student (Design)',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80',
+    initials: 'RD',
+    color: 'linear-gradient(135deg, #C4996A, #dfb485)',
     rating: 5,
     review: 'Clean rooms, attached balcony, and very helpful staff. Whenever we have a minor issue (like water or light), the management resolves it in minutes. Highly recommended!'
   },
@@ -178,7 +180,8 @@ export const testimonials = [
     id: 3,
     name: 'Snehal Patil',
     role: 'MIT ADT Student (BBA)',
-    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80',
+    initials: 'SP',
+    color: 'linear-gradient(135deg, #2A4858, #406f87)',
     rating: 5,
     review: 'Very safe environment for girls. CCTV coverage, daily room cleaning, and automatic washing machines make student life very convenient.'
   },
@@ -186,7 +189,8 @@ export const testimonials = [
     id: 4,
     name: 'Pranav Kulkarni',
     role: 'MIT ADT Student (M.Tech)',
-    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80',
+    initials: 'PK',
+    color: 'linear-gradient(135deg, #4A3E3D, #705f5d)',
     rating: 4,
     review: 'The mess food is very hygienic and they serve daily breakfast, lunch, and dinner. The battery backup is a lifesaver during exams.'
   }

@@ -21,12 +21,12 @@ function FadeUp({ children, delay = 0, className = "" }) {
 }
 
 const reviews = [
-  { id: 1, name: "Priya Sharma", college: "B.Tech CSE — MIT ADT", rating: 5, date: "March 2024", review: "The best PG experience! Food is amazing — just like home-cooked meals. Security is excellent and WiFi never fails even during exam season.", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=60&h=60&fit=crop&auto=format", helpful: 14 },
-  { id: 2, name: "Rahul Deshmukh", college: "MBA — MIT ADT", rating: 5, date: "February 2024", review: "Clean, well-maintained, and professionally managed. The warden addresses any issue within hours. Highly recommend for working professionals too.", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&auto=format", helpful: 11 },
-  { id: 3, name: "Sneha Patil", college: "B.Pharm — MIT ADT", rating: 5, date: "January 2024", review: "Been here 2 years. The community is wonderful. Festivals are celebrated together, birthdays never go unnoticed. Made lifelong friends here.", avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&h=60&fit=crop&auto=format", helpful: 9 },
-  { id: 4, name: "Arjun Kulkarni", college: "M.Tech — MIT ADT", rating: 4, date: "December 2023", review: "Great value for money. Triple sharing rooms are spacious. Power backup is a real lifesaver during load shedding months.", avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=60&h=60&fit=crop&auto=format", helpful: 7 },
-  { id: 5, name: "Anjali Mishra", college: "BCA — MIT ADT", rating: 5, date: "November 2023", review: "As a girl from UP, I was nervous about Pune. Sahyadri PG made the transition easy. The all-girls floor has excellent security and the warden aunty is like a second mother.", avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=60&h=60&fit=crop&auto=format", helpful: 18 },
-  { id: 6, name: "Vikram Nair", college: "B.Tech IT — MIT ADT", rating: 4, date: "October 2023", review: "The Sunday special menu is something I look forward to every week. Internet speed is genuinely fast — attended online internship interviews without any issues.", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=60&h=60&fit=crop&auto=format", helpful: 5 },
+  { id: 1, name: "Priya Sharma", college: "B.Tech CSE — MIT ADT", rating: 5, date: "March 2024", review: "The best PG experience! Food is amazing — just like home-cooked meals. Security is excellent and WiFi never fails even during exam season.", initials: "PS", color: "linear-gradient(135deg, #7B1113, #a21a1d)", helpful: 14 },
+  { id: 2, name: "Rahul Deshmukh", college: "MBA — MIT ADT", rating: 5, date: "February 2024", review: "Clean, well-maintained, and professionally managed. The warden addresses any issue within hours. Highly recommend for working professionals too.", initials: "RD", color: "linear-gradient(135deg, #C4996A, #dfb485)", helpful: 11 },
+  { id: 3, name: "Sneha Patil", college: "B.Pharm — MIT ADT", rating: 5, date: "January 2024", review: "Been here 2 years. The community is wonderful. Festivals are celebrated together, birthdays never go unnoticed. Made lifelong friends here.", initials: "SP", color: "linear-gradient(135deg, #2A4858, #406f87)", helpful: 9 },
+  { id: 4, name: "Arjun Kulkarni", college: "M.Tech — MIT ADT", rating: 4, date: "December 2023", review: "Great value for money. Triple sharing rooms are spacious. Power backup is a real lifesaver during load shedding months.", initials: "AK", color: "linear-gradient(135deg, #4A3E3D, #705f5d)", helpful: 7 },
+  { id: 5, name: "Anjali Mishra", college: "BCA — MIT ADT", rating: 5, date: "November 2023", review: "As a girl from UP, I was nervous about Pune. Sahyadri PG made the transition easy. The all-girls floor has excellent security and the warden aunty is like a second mother.", initials: "AM", color: "linear-gradient(135deg, #7B1113, #a21a1d)", helpful: 18 },
+  { id: 6, name: "Vikram Nair", college: "B.Tech IT — MIT ADT", rating: 4, date: "October 2023", review: "The Sunday special menu is something I look forward to every week. Internet speed is genuinely fast — attended online internship interviews without any issues.", initials: "VN", color: "linear-gradient(135deg, #2A4858, #406f87)", helpful: 5 },
 ];
 
 const totalRatings = { 5: 312, 4: 87, 3: 22, 2: 8, 1: 3 };
@@ -154,7 +154,12 @@ export default function Feedback() {
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <img src={r.avatar} alt={r.name} className="w-10 h-10 rounded-full object-cover" />
+                        <div
+                          className="w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold text-xs ring-1 ring-[#7B1113]/10 shrink-0 select-none"
+                          style={{ background: r.color, fontFamily: "Inter, sans-serif" }}
+                        >
+                          {r.initials}
+                        </div>
                         <div>
                           <div className="text-[#1A0A0B] text-sm font-medium" style={{ fontFamily: "Inter, sans-serif" }}>{r.name}</div>
                           <div className="text-[#7A6A5A] text-xs" style={{ fontFamily: "Inter, sans-serif" }}>{r.college}</div>

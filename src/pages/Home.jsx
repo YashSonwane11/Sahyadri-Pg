@@ -6,8 +6,10 @@ import {
   Star, ChevronLeft, ChevronRight, Phone, MessageCircle, ArrowRight, Check, Play
 } from "lucide-react";
 
+import roomSingle from "../assets/single_room.jpeg";
 import roomDouble from "../assets/2_shr_room_main.jpeg";
 import roomTriple from "../assets/3shr_room.jpeg";
+import roomQuad from "../assets/2_shr_room.jpeg";
 import buildingNight from "../assets/building-night.jpg";
 import buildingDay from "../assets/building-day.jpg";
 import balcony from "../assets/balcony.png";
@@ -52,6 +54,12 @@ const features = [
 
 const rooms = [
   {
+    type: "Single Sharing",
+    image: roomSingle,
+    features: ["Attached Bathroom", "Private Balcony", "Study Table", "Wardrobe"],
+    badge: "Premium Privacy", badgeColor: "#2A4858",
+  },
+  {
     type: "Double Sharing",
     image: roomDouble,
     features: ["Attached Bathroom", "AC Available", "Study Table", "Wardrobe"],
@@ -62,6 +70,12 @@ const rooms = [
     image: roomTriple,
     features: ["Shared Bathroom", "Study Table", "Wardrobe", "Power Backup"],
     badge: "Best Value", badgeColor: "#C4996A",
+  },
+  {
+    type: "Quad Sharing",
+    image: roomQuad,
+    features: ["Shared Bathroom", "Study Table", "Wardrobe", "Daily Cleaning"],
+    badge: "Budget Friendly", badgeColor: "#4A3E3D",
   },
 ];
 
@@ -492,33 +506,25 @@ export function HomePage() {
           </FadeUp>
 
           {/* Swapping Buttons for Mobile View */}
-          <div className="flex lg:hidden bg-white/60 backdrop-blur-md p-1.5 rounded-full border border-[#7B1113]/10 max-w-[280px] mx-auto mb-8 shadow-sm">
-            <button
-              onClick={() => setActiveRoomIndex(0)}
-              className={`flex-1 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
-                activeRoomIndex === 0
-                  ? 'bg-[#7B1113] text-white shadow-md shadow-[#7B1113]/20'
-                  : 'text-[#7A6A5A] hover:bg-white/40'
-              }`}
-              style={{ fontFamily: "Inter, sans-serif" }}
-            >
-              Double
-            </button>
-            <button
-              onClick={() => setActiveRoomIndex(1)}
-              className={`flex-1 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
-                activeRoomIndex === 1
-                  ? 'bg-[#7B1113] text-white shadow-md shadow-[#7B1113]/20'
-                  : 'text-[#7A6A5A] hover:bg-white/40'
-              }`}
-              style={{ fontFamily: "Inter, sans-serif" }}
-            >
-              Triple
-            </button>
+          <div className="flex lg:hidden bg-white/60 backdrop-blur-md p-1 rounded-full border border-[#7B1113]/10 max-w-[340px] mx-auto mb-8 shadow-sm justify-between">
+            {["Single", "Double", "Triple", "Quad"].map((label, idx) => (
+              <button
+                key={label}
+                onClick={() => setActiveRoomIndex(idx)}
+                className={`flex-1 py-2 rounded-full text-[10px] sm:text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
+                  activeRoomIndex === idx
+                    ? 'bg-[#7B1113] text-white shadow-md shadow-[#7B1113]/20'
+                    : 'text-[#7A6A5A] hover:bg-white/40'
+                }`}
+                style={{ fontFamily: "Inter, sans-serif" }}
+              >
+                {label}
+              </button>
+            ))}
           </div>
 
           {/* Desktop view Grid */}
-          <div className="hidden lg:grid grid-cols-2 gap-8">
+          <div className="hidden lg:grid grid-cols-2 xl:grid-cols-4 gap-6">
             {rooms.map((room, i) => (
               <FadeUp key={room.type} delay={i * 0.12}>
                 <RoomCard room={room} />
@@ -531,10 +537,10 @@ export function HomePage() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeRoomIndex}
-                initial={{ opacity: 0, x: activeRoomIndex === 0 ? -60 : 60 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: activeRoomIndex === 0 ? 60 : -60 }}
-                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                initial={{ opacity: 0, scale: 0.97 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.97 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
                 className="w-full"
               >
                 <RoomCard room={rooms[activeRoomIndex]} />
@@ -544,7 +550,7 @@ export function HomePage() {
             {/* Slider Navigation swapping buttons */}
             <div className="flex justify-center items-center gap-6 mt-8">
               <button
-                onClick={() => setActiveRoomIndex(c => (c === 0 ? 1 : 0))}
+                onClick={() => setActiveRoomIndex(c => (c - 1 + rooms.length) % rooms.length)}
                 className="w-11 h-11 rounded-full bg-white border border-[#7B1113]/10 flex items-center justify-center text-[#7B1113] hover:bg-[#7B1113] hover:text-white transition-all shadow-sm cursor-pointer"
                 aria-label="Previous room"
               >
@@ -566,7 +572,7 @@ export function HomePage() {
               </div>
 
               <button
-                onClick={() => setActiveRoomIndex(c => (c === 1 ? 0 : 1))}
+                onClick={() => setActiveRoomIndex(c => (c + 1) % rooms.length)}
                 className="w-11 h-11 rounded-full bg-white border border-[#7B1113]/10 flex items-center justify-center text-[#7B1113] hover:bg-[#7B1113] hover:text-white transition-all shadow-sm cursor-pointer"
                 aria-label="Next room"
               >
