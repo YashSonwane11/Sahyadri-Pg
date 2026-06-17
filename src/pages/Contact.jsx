@@ -71,6 +71,9 @@ export default function Contact() {
       setTimeout(() => {
         setLoading(false);
         setSubmitted(true);
+        // Open WhatsApp with prefilled message
+        const waMsg = `New Sahyadri PG Enquiry\n\nName: ${form.name}\nPhone: ${form.phone}\nEmail: ${form.email}\nGender: ${form.gender}\nRoom Preference: ${form.roomPreference}\nMessage: ${form.message}\n\nPlease contact this person soon.`;
+        window.open(`https://wa.me/919504059393?text=${encodeURIComponent(waMsg)}`, "_blank");
       }, 1000);
       return;
     }
@@ -87,6 +90,9 @@ export default function Contact() {
       .then(() => {
         // Under no-cors, the response is opaque, but the request is successfully dispatched and recorded.
         setSubmitted(true);
+        // Open WhatsApp with prefilled message
+        const waMsg = `New Sahyadri PG Enquiry\n\nName: ${form.name}\nPhone: ${form.phone}\nEmail: ${form.email}\nGender: ${form.gender}\nRoom Preference: ${form.roomPreference}\nMessage: ${form.message}\n\nPlease contact this person soon.`;
+        window.open(`https://wa.me/919504059393?text=${encodeURIComponent(waMsg)}`, "_blank");
       })
       .catch((err) => {
         console.error("Google Sheets Submission Error:", err);
