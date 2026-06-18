@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import { Check, MessageCircle, ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -90,12 +90,14 @@ const roomData = {
 
 
 export default function Rooms() {
-  const [activeTab, setActiveTab] = useState("double");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const rawTab = searchParams.get("tab") || "double";
+  const activeTab = roomData[rawTab] ? rawTab : "double";
   const [imgIdx, setImgIdx] = useState(0);
   const room = roomData[activeTab];
 
   const switchTab = (tab) => {
-    setActiveTab(tab);
+    setSearchParams({ tab }, { replace: true });
     setImgIdx(0);
   };
 

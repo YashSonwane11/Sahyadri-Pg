@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Leaf, Flame, Heart, Calendar, FileText, Image as ImageIcon, ZoomIn, Clock, Search, Utensils } from "lucide-react";
 import { motion } from "framer-motion";
 import messMenuImg from "../assets/mess_menu.jpg";
@@ -144,9 +145,16 @@ const menuCatalog = {
 };
 
 export default function Mess() {
-  const [activeTab, setActiveTab] = useState("menu");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const rawTab = searchParams.get("tab") || "menu";
+  const validTabs = ["menu", "catalog", "terms", "images"];
+  const activeTab = validTabs.includes(rawTab) ? rawTab : "menu";
   const [lightboxImage, setLightboxImage] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
+
+  const handleTabChange = (tab) => {
+    setSearchParams({ tab }, { replace: true });
+  };
 
   return (
     <div className="bg-[#FAF7F4] pt-20">
@@ -235,7 +243,7 @@ export default function Mess() {
           {/* Tab Navigation */}
           <div className="flex flex-wrap gap-2 justify-center mb-12 bg-white/60 p-1.5 rounded-2xl border border-[#7B1113]/10 w-fit mx-auto shadow-sm">
             <button
-              onClick={() => setActiveTab("menu")}
+              onClick={() => handleTabChange("menu")}
               className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${
                 activeTab === "menu" ? "bg-[#7B1113] text-white shadow-md" : "text-[#7A6A5A] hover:text-[#7B1113]"
               }`}
@@ -244,7 +252,7 @@ export default function Mess() {
               <Calendar size={16} /> Weekly Menu
             </button>
             <button
-              onClick={() => setActiveTab("catalog")}
+              onClick={() => handleTabChange("catalog")}
               className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${
                 activeTab === "catalog" ? "bg-[#7B1113] text-white shadow-md" : "text-[#7A6A5A] hover:text-[#7B1113]"
               }`}
@@ -253,7 +261,7 @@ export default function Mess() {
               <Utensils size={16} /> Menu Catalog
             </button>
             <button
-              onClick={() => setActiveTab("terms")}
+              onClick={() => handleTabChange("terms")}
               className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${
                 activeTab === "terms" ? "bg-[#7B1113] text-white shadow-md" : "text-[#7A6A5A] hover:text-[#7B1113]"
               }`}
@@ -262,7 +270,7 @@ export default function Mess() {
               <FileText size={16} /> Terms & Conditions
             </button>
             <button
-              onClick={() => setActiveTab("images")}
+              onClick={() => handleTabChange("images")}
               className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${
                 activeTab === "images" ? "bg-[#7B1113] text-white shadow-md" : "text-[#7A6A5A] hover:text-[#7B1113]"
               }`}
